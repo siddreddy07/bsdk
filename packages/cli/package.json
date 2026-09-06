@@ -1,5 +1,5 @@
 {
-  "name": "bsdk",
+  "name": "@bsdk/cli",
   "version": "0.0.1",
   "type": "module",
   "scripts": {

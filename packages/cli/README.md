@@ -8,16 +8,16 @@ Run BSDK using your preferred package manager:
 
 ```bash
 # npm
-npx bsdk init
+npx @bsdk/cli init
 
 # pnpm
-pnpm dlx bsdk init
+pnpm dlx @bsdk/cli init
 
 # yarn
-yarn dlx bsdk init
+yarn dlx @bsdk/cli init
 
 # bun
-bunx bsdk init
+bunx @bsdk/cli init
 ```
 
 The CLI automatically detects your package manager and uses it when installing dependencies.
@@ -85,9 +85,9 @@ BSDK supports:
 
 | Package Manager | Run |
 | --- | --- |
-| npm | `npx bsdk init` |
-| pnpm | `pnpm dlx bsdk init` |
-| Yarn | `yarn dlx bsdk init` |
-| Bun | `bunx bsdk init` |
+| npm | `npx @bsdk/cli init` |
+| pnpm | `pnpm dlx @bsdk/cli init` |
+| Yarn | `yarn dlx @bsdk/cli init` |
+| Bun | `bunx @bsdk/cli init` |
 
 That's it. Run the CLI, choose your providers and knowledge setup, and BSDK generates the required configuration for your project.
