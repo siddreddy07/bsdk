@@ -7,7 +7,7 @@ import {
 } from "@shadcn/react/message-scroller"
 
 import { cn } from "../..//lib/utils"
-import { Button } from "@/components/ui/button"
+import { Button } from "./button"
 import { ArrowDownIcon } from "lucide-react"
 
 function MessageScrollerProvider(
@@ -40,7 +40,7 @@ function MessageScrollerViewport({
     <MessageScrollerPrimitive.Viewport
       data-slot="message-scroller-viewport"
       className={cn(
-        "size-full min-h-0 min-w-0 scroll-fade-b scrollbar-thin scrollbar-gutter-stable overflow-y-auto overscroll-contain contain-content data-autoscrolling:scrollbar-thumb-transparent data-autoscrolling:scrollbar-track-transparent",
+        "size-full min-h-0 min-w-0 scroll-fade-b [--scroll-fade-b-size:2rem] scrollbar-thin scrollbar-gutter-stable overflow-y-auto overscroll-contain contain-content data-autoscrolling:scrollbar-thumb-transparent data-autoscrolling:scrollbar-track-transparent",
         className
       )}
       {...props}
@@ -55,7 +55,7 @@ function MessageScrollerContent({
   return (
     <MessageScrollerPrimitive.Content
       data-slot="message-scroller-content"
-      className={cn("flex h-max pt-4 pb-4 min-h-full flex-col gap-6", className)}
+      className={cn("flex h-max pt-4 pb-4 min-h-full flex-col gap-2", className)}
       {...props}
     />
   )

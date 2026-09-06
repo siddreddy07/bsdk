@@ -1,19 +1,16 @@
 import type { ReactNode } from "react";
 import { PopoverHeader, PopoverTitle } from "../components/ui/popover";
-import type { BSDKChatTheme } from "./types";
 
 const ChatHeader = ({
   title = "BSDK Chat",
   icon,
   iconImg,
   status = "Online",
-  theme,
 }: {
   title?: string;
   icon?: ReactNode;
   iconImg?: string;
   status?: string;
-  theme?: BSDKChatTheme;
 }) => {
   return (
     <PopoverHeader className="border-border/60 border-b pb-2.5">
@@ -22,11 +19,7 @@ const ChatHeader = ({
           {iconImg ? (
             <img src={iconImg} alt="" className="size-4 rounded-full" />
           ) : (
-            icon ?? (
-              <span
-                className={`size-1.5 rounded-full ${theme?.statusDot ?? "bg-primary"}`}
-              />
-            )
+            icon ?? <span className="size-1.5 rounded-full bg-primary" />
           )}
           {title}
         </PopoverTitle>
