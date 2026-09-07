@@ -3,7 +3,6 @@ import {
   DocCodeBlock,
   DocInline,
   DocIntro,
-  DocList,
   DocNote,
   DocP,
   DocSection,

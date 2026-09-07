@@ -142,16 +142,16 @@ const BsdkUi = () => (
         ]}
       />
 
-      <DocP className="mt-4">If you are starting from scratch, let shadcn create a configured project for you.</DocP>
+      <DocP>If you are starting from scratch, let shadcn create a configured project for you.</DocP>
       <GenericTabs tabs={newProjectTabs} />
 
-      <DocP className="mt-4">If you already have a React project, make sure it uses Tailwind CSS v4, then initialize shadcn:</DocP>
+      <DocP >If you already have a React project, make sure it uses Tailwind CSS v4, then initialize shadcn:</DocP>
       <GenericTabs tabs={existingProjectTabs} />
     </DocSection>
 
     <DocSection id="installation" title="Installation">
       <GenericTabs tabs={installTabs} />
-      <DocP className="mt-4">
+      <DocP>
         Import the stylesheet once in your global CSS:
       </DocP>
       <DocCodeBlock snippet={`@import "@bsdk/ui/styles.css";`} />
@@ -345,7 +345,7 @@ export default function App() {
       />
     </DocSection>
 
-    <DocP className="mt-8">
+    <DocP>
       For backend setup, see{" "}
       <Link to="/docs/bsdk-server" className="text-[#B8D96A] underline-offset-4 hover:underline">BSDK Server</Link>.
     </DocP>

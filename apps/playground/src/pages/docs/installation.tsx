@@ -210,7 +210,7 @@ const Installation = () => (
         />
         You do not need to manually add BSDK&apos;s internal shadcn components.
       </DocNote>
-      <DocP className="mt-4">
+      <DocP>
         For usage, see{" "}
         <Link to="/docs/bsdk-ui" className="text-[#B8D96A] underline-offset-4 hover:underline">BSDK Chat</Link>.
       </DocP>

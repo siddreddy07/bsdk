@@ -227,7 +227,7 @@ const QuickStart = () => {
             </div>
           </div>
         </div>
-        <DocP className="mt-4">
+        <DocP>
           After configuring the credentials in the dashboard, copy them to your backend <DocInline>.env</DocInline> file:
         </DocP>
         <DocCodeBlock

@@ -505,12 +505,34 @@ function IconWrapper<T extends string>({
         inheritedAnimate) as Trigger;
 
       return (
-        <AnimateIcon animate={finalAnimate} animateOnHover={animateOnHover} animateOnTap={animateOnTap} animateOnView={animateOnView} animateOnViewMargin={animateOnViewMargin} animateOnViewOnce={animateOnViewOnce} animation={animationProp ?? parentAnimation} loop={loop ?? parentLoop} loopDelay={loopDelay ?? parentLoopDelay} persistOnAnimateEnd={persistOnAnimateEnd ?? parentPersistOnAnimateEnd} initialOnAnimateEnd={initialOnAnimateEnd ?? parentInitialOnAnimateEnd} delay={delay ?? parentDelay} completeOnStop={completeOnStop ?? parentCompleteOnStop} render={<IconComponent size={size} className={cn(
-                        className,
-                        ((animationProp ?? parentAnimation) === 'path' ||
-                          (animationProp ?? parentAnimation) === 'path-loop') &&
-                          pathClassName,
-                      )} {...props} />}></AnimateIcon>
+
+        <AnimateIcon
+  animate={finalAnimate}
+  animateOnHover={animateOnHover}
+  animateOnTap={animateOnTap}
+  animateOnView={animateOnView}
+  animateOnViewMargin={animateOnViewMargin}
+  animateOnViewOnce={animateOnViewOnce}
+  animation={animationProp ?? parentAnimation}
+  loop={loop ?? parentLoop}
+  loopDelay={loopDelay ?? parentLoopDelay}
+  persistOnAnimateEnd={persistOnAnimateEnd ?? parentPersistOnAnimateEnd}
+  initialOnAnimateEnd={initialOnAnimateEnd ?? parentInitialOnAnimateEnd}
+  delay={delay ?? parentDelay}
+  completeOnStop={completeOnStop ?? parentCompleteOnStop}
+>
+  <IconComponent
+    size={size}
+    className={cn(
+      className,
+      ((animationProp ?? parentAnimation) === 'path' ||
+        (animationProp ?? parentAnimation) === 'path-loop') &&
+        pathClassName,
+    )}
+    {...props}
+  />
+</AnimateIcon>
+
       );
     }
 
@@ -553,11 +575,12 @@ function IconWrapper<T extends string>({
     animationProp !== undefined
   ) {
     return (
-      <AnimateIcon animate={animate} animateOnHover={animateOnHover} animateOnTap={animateOnTap} animateOnView={animateOnView} animateOnViewMargin={animateOnViewMargin} animateOnViewOnce={animateOnViewOnce} animation={animationProp} loop={loop} loopDelay={loopDelay} delay={delay} completeOnStop={completeOnStop} render={<IconComponent size={size} className={cn(
+      <AnimateIcon animate={animate} animateOnHover={animateOnHover} animateOnTap={animateOnTap} animateOnView={animateOnView} animateOnViewMargin={animateOnViewMargin} animateOnViewOnce={animateOnViewOnce} animation={animationProp} loop={loop} loopDelay={loopDelay} delay={delay} completeOnStop={completeOnStop} >
+      <IconComponent size={size} className={cn(
                     className,
                     (animationProp === 'path' || animationProp === 'path-loop') &&
                       pathClassName,
-                  )} {...props} />}></AnimateIcon>
+                  )} {...props} /></AnimateIcon>
     );
   }
 

@@ -29,7 +29,6 @@ const App = () => {
       const [searchParams, setSearchParams] = useSearchParams()
 
       const activeBot = useBotsStore((state) => state.activeBot)
-      const user = useUserStore((s)=>s.user)
       const setActiveBot = useBotsStore((s)=>s.setActiveBot)
       const bots = useBotsStore.getState().bots
       console.log('bots : ',bots)

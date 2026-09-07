@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useSearchParams } from "react-router-dom"
-import { FileIcon, FileText, Menu, Pencil, ToggleLeft, Trash2 } from "lucide-react"
+import { FileIcon , Menu, Pencil, ToggleLeft, Trash2 } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 import { Button } from "@/components/ui/button"
@@ -36,8 +36,6 @@ import { useBotsStore, type Bot } from "@/store/bots.store"
 import api from "@/lib/axiosInstace"
 import { toast } from "sonner"
 import { useFilesStore } from "@/store/files.store"
-import { FileStatusIcon } from "../fileStatusIcon"
-import { ToggleLeftIcon } from "../animate-ui/icons/toggle-left"
 
 function EditBotDrawer({
   bot,
@@ -54,7 +52,7 @@ function EditBotDrawer({
   const [description, setDescription] = useState(bot.description)
   const [saving, setSaving] = useState(false)
 
-const [searchParams, setSearchParams] = useSearchParams()
+const [searchParams] = useSearchParams()
 
 const botId = searchParams.get("botId")
 const files = useFilesStore((state) => state.files)

@@ -9,7 +9,7 @@ import { Trash } from "@/components/animate-ui/icons/trash"
 
 import api from "@/lib/axiosInstace"
 import { useFilesStore } from "@/store/files.store"
-import { FileStatusIcon } from "../fileStatusIcon"
+import { FileStatusIcon } from "../FileStatusIcon"
 
 const MAX_DOCS = 2
 

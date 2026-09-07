@@ -2,7 +2,6 @@ import DocsLayout from "../../components/docs/layout"
 import {
   DocCodeBlock,
   DocInline,
-  DocList,
   DocNote,
   DocP,
   DocSection,

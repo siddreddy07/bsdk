@@ -1,5 +1,5 @@
 import axios, { AxiosError, type InternalAxiosRequestConfig } from "axios";
-import { toast } from "sonner";
+// import { toast } from "sonner";
 
 const api = axios.create({
   baseURL: import.meta.env.VITE_BACKEND_URL,
