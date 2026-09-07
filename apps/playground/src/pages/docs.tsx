@@ -22,7 +22,7 @@ const Docs = () => (
     headings={headings}
   >
     <DocIntro>
-      The SDK for building AI-native websites.
+      The Chat SDK for building AI-native websites.
     </DocIntro>
 
     <DocSection id="what-is-bsdk" title="What is BSDK?">

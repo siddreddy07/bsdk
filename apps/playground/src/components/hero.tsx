@@ -58,7 +58,7 @@ const Hero = () => {
       <div className="relative mx-auto flex max-w-6xl flex-col items-center px-4 pt-24 pb-20 sm:px-6 sm:pt-28 sm:pb-24 md:pt-32 lg:pt-40 lg:pb-36">
         <div className="flex w-full max-w-3xl flex-col items-center gap-4 text-center sm:gap-6">
           <h1 className="text-3xl leading-[1.05] font-semibold tracking-tight text-balance sm:text-5xl lg:text-6xl">
-            The SDK for AI-native websites.
+            The Chat SDK for AI-native websites.
           </h1>
           <p className="max-w-xl text-[15px] leading-relaxed text-white/60 text-pretty sm:text-lg">
             BSDK provides the frontend and server pieces to bring AI into your
@@ -217,7 +217,7 @@ const Hero = () => {
               >
                 <path d="m12 1.608 12 20.784H0Z" />
               </svg>
-              <span className="text-sm font-semibold tracking-tight">AI SDK</span>
+              <span className="text-sm font-semibold tracking-tight">Chat SDK</span>
             </div>
 
             <Marquee
