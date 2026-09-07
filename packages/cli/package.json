@@ -1,6 +1,6 @@
 {
   "name": "@bsdk/cli",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "type": "module",
   "scripts": {
     "build": "tsc"
@@ -8,10 +8,9 @@
   "bin": {
     "bsdk": "./dist/index.js"
   },
-  "files":[
+  "files": [
     "dist"
-],
-
+  ],
   "dependencies": {
     "@clack/prompts": "^1.7.0",
     "chalk": "^6.0.0"

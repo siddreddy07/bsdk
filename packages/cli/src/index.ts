@@ -35,18 +35,9 @@ console.log(
 );
 console.log();
 
-const setupMode = await p.select({
-  message: chalk.bold("How are we building this?"),
-  options: [
-    {
-      value: "bsdk",
-      label: `${chalk.bold.cyan("⚡ BSDK Way")} ${chalk.dim("(Recommended if you're new)")}`,
-    },
-    {
-      value: "byoc",
-      label: `${chalk.bold.magenta("🧠 BYOC")} ${chalk.dim("(You know what you're doing... probably)")}`,
-    },
-  ],
+const setupMode = await p.confirm({
+  message: "Use (Pinecone) for vector db and (Cohere) for Embeddings?",
+  initialValue: true,
 });
 
 if (p.isCancel(setupMode)) {
