@@ -56,6 +56,9 @@ const ChatContent = ({
   if (messages.length === 0) {
     return <ChatEmptyState welcomeText={welcomeText} />;
   }
+  
+const isGenerating =
+  status === "submitted" || status === "streaming"
 
   const bubbleClass = (role: "user" | "assistant") =>
     theme?.bubble?.(role) ??
@@ -245,20 +248,31 @@ const ChatInput = ({
   onChange,
   onSend,
   placeholder,
+  status
 }: {
   value: string;
   onChange: (value: string) => void;
   onSend: () => void;
   placeholder?: string;
+  status? : string;
 }) => {
+  
+      const isGenerating =
+      status === "submitted" || status === "streaming";
+
   const handleSubmit = (event: FormEvent) => {
+
     event.preventDefault();
+    if(isGenerating) return
     onSend();
   };
 
   const handleKeyDown = (event: KeyboardEvent<HTMLTextAreaElement>) => {
     if (event.key === "Enter" && !event.shiftKey) {
       event.preventDefault();
+
+      if(isGenerating) return
+
       onSend();
     }
   };
@@ -282,7 +296,7 @@ const ChatInput = ({
         variant="ghost"
         size="icon"
         className="shrink-0 size-9 bg-gradient-to-br from-[#B8D96A] via-[#8ac94e] to-[#6a9e33] text-white hover:brightness-110 hover:saturate-110 disabled:opacity-50 disabled:cursor-not-allowed"
-        disabled={!value.trim()}
+        disabled={isGenerating || !value.trim()}
         aria-label="Send message"
       >
         <SendHorizontal />
@@ -399,6 +413,7 @@ const BSDKChat = ({
             onChange={setInput}
             onSend={handleSend}
             placeholder={placeholder}
+            status={status}
           />
         </PopoverContent>
       </Popover>
