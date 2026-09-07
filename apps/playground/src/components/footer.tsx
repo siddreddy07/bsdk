@@ -122,42 +122,42 @@ const Footer = () => {
           >
             <path d="m12 1.608 12 20.784H0Z" />
           </svg>
-          <p>
+          <p className="hidden lg:block">
           Vercel AI SDK
           </p>
 
           </span>
           <span className="flex items-center gap-1">
             <CohereLogo/>
-          <p>
+          <p className="hidden lg:block">
           Cohere
           </p>
 
           </span>
           <span className="flex items-center gap-1">
             <PineconeLogo/>
-          <p>
+          <p className="hidden lg:block">
           Pinecone
           </p>
 
           </span>
           <span className="flex items-center gap-1">
             <TriggerDevLogo/>
-          <p>
+          <p className="hidden lg:block">
           Trigger.dev
           </p>
 
           </span>
           <span className="flex items-center gap-1">
             <LlamaIndexLogo/>
-          <p>
+          <p className="hidden lg:block">
           LlamaIndex
           </p>
 
           </span>
           <span className="flex items-center gap-1">
             <MongoDbLogo/>
-          <p>
+          <p className="hidden lg:block">
           Mongodb
           </p>
 
