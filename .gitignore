@@ -18,6 +18,8 @@ coverage
 # Vercel
 .vercel
 
+.turbo-clone-temp
+
 # Build Outputs
 .next/
 out/
