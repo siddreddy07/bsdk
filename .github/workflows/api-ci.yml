@@ -9,6 +9,10 @@ on:
     branches:
       - main
 
+  permissions:
+    contents: read
+    packages: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -34,3 +38,22 @@ jobs:
 
       - name: Build Docker image
         run: docker build -t bsdk-api .
+      
+      - name: Login to Github Container Registry
+        uses: docker/login-action@v3
+        with:
+          regirsty: ghcr.io
+          username: ${{github.actor}}
+          password: ${{secrets.GITHUB_TOKEN}}
+      
+      - name: Tag Docker image
+        if: github.event_name == 'push'
+        run: | 
+           docker tag bsdk-api:latest ghcr.io/${{github.repository_owner}}/bsdk-api:latest
+           docker tag bsdk-api:latest ghcr.io/${{ github.repository_owner }}/bsdk-api:${{ github.sha }}
+
+      - name: Push Docker Image
+        if: github.event_name == 'push'
+        run: |
+           docker push ghrc.io/${{github.repository_owner}}/bsdk-api:latest
+           docker push ghcr.io/${{ github.repository_owner }}/bsdk-api:${{ github.sha }}
