@@ -112,7 +112,7 @@ const Footer = () => {
           
           Build with 
         </p>
-        <div className="flex items-center text-white/50 justify-between gap-4">
+        <div className="flex items-center text-white/50 justify-between gap-6 lg:gap-4">
           <span className="flex items-center gap-1">
             <svg
             viewBox="0 0 24 24"
