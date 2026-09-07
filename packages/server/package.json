@@ -1,13 +1,13 @@
 {
   "name": "@bsdk/server",
-  "version": "0.0.1",
-   "type": "module",
-    "main": "./dist/index.js",
+  "version": "0.0.2",
+  "type": "module",
+  "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "files": [
     "dist"
   ],
-    "scripts": {
+  "scripts": {
     "build": "tsc"
   },
   "dependencies": {
@@ -21,7 +21,7 @@
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
     "@types/node": "^26.4.0",
-     "typescript": "^5.9.0"
+    "typescript": "^5.9.0"
   },
   "publishConfig": {
     "access": "public"
