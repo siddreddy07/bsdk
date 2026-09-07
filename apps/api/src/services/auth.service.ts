@@ -1,4 +1,4 @@
-import bcrypt from 'bcrypt';
+import bcrypt from "bcryptjs";
 import { ObjectId } from 'mongodb';
 import { USER_ROLES, type UserRole } from '../constants/auth.constants.js';
 import { db } from '../config/db.js';

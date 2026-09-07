@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
+import rateLimit from "express-rate-limit";
 import { connectToDb } from './config/db.js';
 import morgan from 'morgan';
 import authRoutes from './routes/auth.routes.js';
@@ -23,6 +24,16 @@ app.use(cors({
 }));
 
 app.use(express.json());
+
+
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  limit: 100,               
+  standardHeaders: "draft-8",
+  legacyHeaders: false,
+});
+
+app.use(limiter);
 
 app.use(cookieParser());
 

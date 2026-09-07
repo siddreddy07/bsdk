@@ -184,7 +184,7 @@ toast.error(message)
   if (user && !showAvatar && !isOnDashboard) {
     return (
       <Link
-        to={`/dashboard?step=0&tab=configuration&botId=${activeBot?.botId}`}
+        to={`/dashboard?step=0&tab=configuration${activeBot ? `&botId=${activeBot?.botId}` : ''}`}
         onMouseEnter={() => setTriggerHovered(true)}
         onMouseLeave={() => setTriggerHovered(false)}
         className={buttonVariants({
@@ -293,7 +293,7 @@ toast.error(message)
                       <div className="flex flex-col items-center justify-center gap-3">
                 {!isOnDashboard && (
                 <Link
-                  to={`/dashboard?tab=configuration&step=0&botId=${activeBot?.botId}`}
+                  to={`/dashboard?tab=configuration&step=0${activeBot ? `&botId=${activeBot?.botId}` : ''}`}
                   onClick={() => setOpen(false)}
                   className={buttonVariants({
                     variant: "default",

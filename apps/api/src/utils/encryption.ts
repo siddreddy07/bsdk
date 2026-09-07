@@ -1,4 +1,4 @@
-import crypto from "crypto"
+import crypto from "node:crypto"
 
 const key = Buffer.from(
   process.env.BSDK_ENCRYPTION_KEY!,
@@ -6,7 +6,7 @@ const key = Buffer.from(
 )
 
 export function encrypt(value: string) {
-  const iv = crypto.randomBytes(12)
+  const iv = Buffer.from(crypto.randomBytes(12))
 
   const cipher = crypto.createCipheriv(
     "aes-256-gcm",
@@ -19,7 +19,7 @@ export function encrypt(value: string) {
     cipher.final(),
   ])
 
-  const authTag = cipher.getAuthTag()
+  const authTag = Buffer.from(cipher.getAuthTag())
 
   return [
     iv.toString("hex"),
@@ -27,7 +27,6 @@ export function encrypt(value: string) {
     encrypted.toString("hex"),
   ].join(":")
 }
-
 
 export function decrypt(value: string) {
   const [ivHex, authTagHex, encryptedHex] = value.split(":")

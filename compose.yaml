@@ -1,0 +1,20 @@
+services :
+    api :
+      build : .
+      container_name: bsdk-api
+      ports: 
+          - "8080:8080"
+      env_file: 
+          - ./apps/api/.env.docker
+    
+
+    mongo: 
+      image: mongo:8
+      container_name: bsdk-mongo
+      ports:
+        - "27017:27017"
+      volumes :
+        - mongo_data:/data/db
+
+volumes :
+    mongo_data:

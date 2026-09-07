@@ -5,6 +5,7 @@ import type { UpdateBotInput } from "../schemas/bot.schema"
 const bots = db.collection("bots")
 
 export const getBotsByUser = async (userId: string) => {
+  
   const Allbots = await bots
     .find({ userId: new ObjectId(userId) })
     .sort({ createdAt: -1 })
