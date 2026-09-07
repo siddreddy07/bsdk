@@ -1,38 +1,38 @@
-name : BSDK API CI
+name: BSDK API CI
 
 on:
   push:
     branches:
-        - main
-  
+      - main
+
   pull_request:
     branches:
-        - main
+      - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
-  steps:
-   - name: Checkout repository
-     uses: actions/checkout@v4 
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-   - name: Setup pnpm
-     uses: pnpm/action-setup@v4
-     with:
-      version: 9
-   
-   - name: Setup node
-     uses: actions/setup-node@v4
-     with:
-        node-version: 22
-        cache: pnpm
-    
-   - name: Install dependencies
-     run: pnpm install --forzen-lockfile
-   
-   - name: Build API
-     run:  pnpm --filter api build
-   
-   - name: Docker build
-     run: docker build -t bsdk-api .
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build API
+        run: pnpm --filter api build
+
+      - name: Build Docker image
+        run: docker build -t bsdk-api .
