@@ -323,8 +323,8 @@ export default function App() {
   theme={{
     bubble: (role) =>
       role === "user"
-        ? "bg-primary text-primary-foreground"
-        : "bg-muted text-foreground",
+? "bg-[#84cc16] text-white font-semibold dark:bg-[#a5cd4a] dark:text-zinc-900"
+      : "bg-zinc-200 text-zinc-800 dark:bg-zinc-700 dark:text-zinc-100");
   }}
 />`}
       />
