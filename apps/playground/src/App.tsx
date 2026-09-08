@@ -16,7 +16,7 @@ import KnowledgeSetup from "./pages/docs/knowledge-setup"
 import Providers from "./pages/docs/providers"
 import NotFound from "./pages/not-found"
 import { BSDKChat } from "@bsdk/ui"
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { Toaster } from "@/components/ui/sonner"
 import { Toaster as ShadcnToaster } from "@/components/ui/toast"
 import { useUserStore } from "./store/user.store"
@@ -31,10 +31,7 @@ const App = () => {
   const user = useUserStore((s)=>s.user)
   const navigate = useNavigate()
   const location = useLocation()
-  const [initError, setInitError] = useState(false)
-
   const initializeApp = async () => {
-    setInitError(false)
     try {
       const [userResponse] = await Promise.all([
         api.get("/api/auth/me"),
@@ -72,28 +69,12 @@ const App = () => {
         }
         setSearchParams(params, { replace: true })
       }
-    } catch (error) {
-      console.error("Failed to initialize app", error)
-      setInitError(true)
-    }
+    } catch {}
   }
 
   useEffect(() => {
     initializeApp()
   }, [location.pathname])
-
-  if (initError) {
-    return (
-      <div className="flex h-screen items-center justify-center bg-background">
-        <div className="text-center space-y-4">
-          <p>Couldn't connect to the server.</p>
-          <button onClick={initializeApp} className="px-4 py-2 bg-primary text-primary-foreground rounded-md">
-            Retry
-          </button>
-        </div>
-      </div>
-    )
-  }
 
 
   return (
