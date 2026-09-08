@@ -45,12 +45,8 @@ const UploadsStep = () => {
   const fetchFiles = useFilesStore((state) => state.fetchFiles)
   const addFiles = useFilesStore((state) => state.addFiles)
 
-  console.log('Bot Id:',botId)
-
   useEffect(() => {
     if (!botId) return
-
-    console.log('Upload Step')
 
     fetchFiles(botId)
   }, [botId, fetchFiles])

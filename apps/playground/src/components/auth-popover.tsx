@@ -113,8 +113,6 @@ const AuthPopover = ({ triggerClassName, showAvatar = true }: AuthPopoverProps) 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
-    console.log('FormData :',formData)
-
     const { name, email, password } = formData
 
     if (!email || !password || (isSignUp && !name)) {
@@ -165,7 +163,6 @@ const AuthPopover = ({ triggerClassName, showAvatar = true }: AuthPopoverProps) 
   }
 
       } else {
-        console.error('Unexpected response:', response)
         toast.error("Authentication failed. Please check your credentials and try again.")
       }
 

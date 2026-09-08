@@ -30,8 +30,6 @@ const App = () => {
 
       const activeBot = useBotsStore((state) => state.activeBot)
       const setActiveBot = useBotsStore((s)=>s.setActiveBot)
-      const bots = useBotsStore.getState().bots
-      console.log('bots : ',bots)
 
       const navigate = useNavigate()
 
@@ -47,16 +45,12 @@ const location = useLocation()
 }
 
 
-console.log('Config :',chatConfig)
-
 useEffect(() => {
   const getUser = async () => {
     try {
       const response = await api.get("/api/auth/me")
       useUserStore.getState().setUser(response.data.user)
-    } catch (error) {
-      console.error("Error fetching user:", error)
-    }
+    } catch {}
   }
 
   const getBots = async () => {
@@ -81,8 +75,7 @@ useEffect(() => {
       setActiveBot(selectedBot)
 
       return selectedBot
-    } catch (error) {
-      console.error("Error fetching bots:", error)
+    } catch {
       return null
     }
   }
@@ -137,8 +130,6 @@ useEffect(() => {
 
   initializeApp()
 }, [location.pathname])
-
-  console.log('BOt :',activeBot)
 
 
   return (

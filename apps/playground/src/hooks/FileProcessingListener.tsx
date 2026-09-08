@@ -1,6 +1,7 @@
 import { useEffect } from "react"
 import { useRealtimeBatch } from "@trigger.dev/react-hooks"
 import { useFilesStore } from "@/store/files.store"
+import { toast } from "sonner"
 
 
 type Props = {
@@ -21,6 +22,12 @@ const FileProcessingListener = ({
   )
 
   useEffect(() => {
+    if (error) {
+      toast.error(error.message ?? "Realtime file processing error")
+    }
+  }, [error])
+
+  useEffect(() => {
     runs.forEach((run) => {
       const fileId = run.payload?.documentId
       const stage = run.metadata?.stage
@@ -35,10 +42,6 @@ if (
       updateFileStatus(fileId, stage)
     })
   }, [runs, updateFileStatus])
-
-  if (error) {
-    console.error("Realtime error:", error)
-  }
 
   return null
 }

@@ -77,16 +77,8 @@ export const useBotsStore = create<BotsStore>((set) => ({
     try {
       const response = await api.get("/api/bots")
 
-      console.log("API BOTS RESPONSE:", response.data)
-
     const documents: StoresBotDocument[] =
       response.data?.bots || []
-
-    console.log("BOT DOCUMENTS:", documents)
-
-    const mappedBots = documents.map(mapBotDocument)
-
-    console.log("MAPPED BOTS:", mappedBots)
 
       set({ bots: documents.map(mapBotDocument), loading: false })
     } catch (error) {
