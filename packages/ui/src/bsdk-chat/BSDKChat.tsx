@@ -57,6 +57,7 @@ const ChatContent = ({
     return <ChatEmptyState welcomeText={welcomeText} />;
   }
   
+  
 const isGenerating =
   status === "submitted" || status === "streaming"
 
@@ -72,7 +73,6 @@ const isGenerating =
         <MessageScrollerViewport>
           <MessageScrollerContent>
             {messages.map((message) => (
-
               
               <MessageScrollerItem
                 key={message.id}
@@ -88,71 +88,19 @@ const isGenerating =
                         bubbleClass(message.role === "user" ? "user" : "assistant")
                       }`}
                     >
-                      {message.parts
-                        .filter((part) => part.type === "text")
-                        .map((part, i) => (
+                      <div className="bsdk-markdown">
 
-                          <div
-  key={i}
-  className="
-  prose prose-sm max-w-none min-w-0 break-words
+                          {message.parts
+      .filter((part) => part.type === "text")
+      .map((part, i) => (
+        <div key={i}>
+          <ReactMarkdown remarkPlugins={[remarkGfm]}>
+            {String(part.text)}
+          </ReactMarkdown>
+        </div>
+      ))}
 
-  /* Text */
-  prose-p:my-1
-  prose-p:leading-5
-
-  /* Headings */
-  prose-headings:font-semibold
-  prose-headings:my-1.5
-  prose-h1:text-base
-  prose-h2:text-sm
-  prose-h3:text-sm
-
-  /* Lists */
-  prose-ul:my-1
-  prose-ol:my-1
-  prose-ul:pl-4
-  prose-ol:pl-4
-  prose-li:my-0
-  prose-li:leading-5
-  [&_li>p]:my-0
-
-  /* Inline code */
-  prose-code:rounded
-  prose-code:bg-muted
-  prose-code:px-1
-  prose-code:py-0.5
-  prose-code:text-[0.85em]
-  prose-code:before:content-none
-  prose-code:after:content-none
-
-  /* Code blocks */
-  prose-pre:my-1.5
-  prose-pre:overflow-x-auto
-  prose-pre:rounded-md
-  prose-pre:border
-  prose-pre:bg-muted/50
-  prose-pre:p-2.5
-
-  /* Links */
-  prose-a:font-medium
-  prose-a:underline
-  prose-a:underline-offset-2
-
-  /* Other */
-  prose-blockquote:my-1.5
-  prose-hr:my-2
-
-  [&>*:first-child]:mt-0
-  [&>*:last-child]:mb-0
-"
->
-  <ReactMarkdown remarkPlugins={[remarkGfm]}>
-    {String(part.text)}
-  </ReactMarkdown>
 </div>
-
-                        ))}
                     </div>
                   </MessageContent>
                 </Message>
