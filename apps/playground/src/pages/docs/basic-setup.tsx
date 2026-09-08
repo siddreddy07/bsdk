@@ -170,7 +170,7 @@ const QuickStart = () => {
       <DocSection id="account" title="Create BSDK account">
         <DocP>
           Sign up or log in at{" "}
-          <Link to="https://bsdkdev.netlify.app" className="text-[#B8D96A] underline-offset-4 hover:underline">
+          <Link to="https://bsdk.siddharthreddy627.workers.dev" className="text-[#B8D96A] underline-offset-4 hover:underline">
             bsdk-live
           </Link>
           , then continue to the dashboard to configure your Bot.
