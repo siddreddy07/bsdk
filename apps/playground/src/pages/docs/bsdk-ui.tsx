@@ -5,6 +5,7 @@ import {
   DocCommandRow,
   DocInline,
   DocList,
+  DocNote,
   DocP,
   DocSection,
 } from "../../components/docs/primitives"
@@ -14,7 +15,6 @@ const headings = [
   { id: "prerequisites", label: "Prerequisites" },
   { id: "installation", label: "Installation" },
   { id: "usage", label: "Usage" },
-  { id: "configuration", label: "Configuration" },
   { id: "props", label: "Props" },
   { id: "customizing-bubbles", label: "Customizing message bubbles" },
   { id: "trigger", label: "Trigger customization" },
@@ -160,17 +160,12 @@ const BsdkUi = () => (
     <DocSection id="usage" title="Usage">
       <DocCodeBlock
         snippet={`import { BSDKChat } from "@bsdk/ui";
-
-const chatConfig = {
-  api: "http://localhost:8080/api/chat",
-  botId: "your-bot-id",
-  botDescription: "Website assistant",
-};
+import { bsdkConfig } from "@/config/bsdk.config";
 
 export default function App() {
   return (
     <BSDKChat
-      config={chatConfig}
+      config={bsdkConfig}
       title="Ask us anything"
       welcomeText="How can we help?"
       placeholder="Type your message..."
@@ -179,6 +174,33 @@ export default function App() {
   );
 }`}
       />
+      <DocNote>
+        <DocInline>bsdkConfig</DocInline> is defined in your frontend, typically
+        in <DocInline>@/config/bsdk.config.ts</DocInline>. It points the widget
+        at the backend chat endpoint and provides the Bot credentials. See{" "}
+        <Link to="/docs/basic-setup" className="text-[#B8D96A] underline-offset-4 hover:underline">Quick Start</Link>{" "}
+        for the full setup.
+      </DocNote>
+      <DocP>
+        You can also define the config inline:
+      </DocP>
+      <DocCodeBlock
+        snippet={`const bsdkConfig = {
+  api: "{backend-server}/api/chat",
+  botId: "your-bot-id",
+  botDescription: \`Name: Support Bot
+Description: Helps users with account questions\`,
+};
+
+<BSDKChat config={bsdkConfig} />`}
+      />
+      <DocNote>
+        <DocInline>botId</DocInline> is created when you create a Bot in the{" "}
+        <Link to="/dashboard" className="text-[#B8D96A] underline-offset-4 hover:underline">
+          BSDK dashboard
+        </Link>
+        .
+      </DocNote>
       <DocList
         items={[
           <>
@@ -188,58 +210,10 @@ export default function App() {
             <DocInline>botId</DocInline> — identifies the BSDK Bot for the conversation. Create a Bot from the BSDK dashboard and use its Bot ID here.
           </>,
           <>
-            <DocInline>botDescription</DocInline> — the current Bot description/instructions sent with the conversation.
+            <DocInline>description</DocInline> — the current Bot description/instructions sent with the conversation.
           </>,
         ]}
       />
-      <DocP>
-        <DocInline>http://localhost:8080/api/chat</DocInline> is only an example development endpoint. It is not a BSDK default.
-      </DocP>
-    </DocSection>
-
-    <DocSection id="configuration" title="Configuration">
-      <DocP>
-        <DocInline>config</DocInline> is required.
-      </DocP>
-      <DocCodeBlock
-        snippet={`const chatConfig = {
-  api: "http://localhost:8080/api/chat",
-  botId: "your-bot-id",
-  botDescription: "Website assistant",
-};`}
-      />
-      <div className="mt-3 w-full max-w-lg overflow-x-auto rounded-lg border border-white/10">
-        <table className="w-full border-collapse text-sm">
-          <thead>
-            <tr className="border-b border-white/10 text-left text-xs text-white/50">
-              <th className="px-4 py-2.5 font-medium">Property</th>
-              <th className="px-4 py-2.5 font-medium">Type</th>
-              <th className="px-4 py-2.5 font-medium">Required</th>
-              <th className="px-4 py-2.5 font-medium">Purpose</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr className="border-b border-white/5 last:border-0">
-              <td className="px-4 py-2.5 font-mono text-[13px] text-[#B8D96A]">api</td>
-              <td className="px-4 py-2.5 text-white/60">string</td>
-              <td className="px-4 py-2.5 text-white/60">Yes</td>
-              <td className="px-4 py-2.5 leading-relaxed text-white/60">Backend BSDK chat endpoint.</td>
-            </tr>
-            <tr className="border-b border-white/5 last:border-0">
-              <td className="px-4 py-2.5 font-mono text-[13px] text-[#B8D96A]">botId</td>
-              <td className="px-4 py-2.5 text-white/60">string</td>
-              <td className="px-4 py-2.5 text-white/60">Yes</td>
-              <td className="px-4 py-2.5 leading-relaxed text-white/60">Identifies the BSDK Bot for the conversation. Create a Bot from the BSDK dashboard and use its Bot ID here.</td>
-            </tr>
-            <tr className="border-b border-white/5 last:border-0">
-              <td className="px-4 py-2.5 font-mono text-[13px] text-[#B8D96A]">botDescription</td>
-              <td className="px-4 py-2.5 text-white/60">string</td>
-              <td className="px-4 py-2.5 text-white/60">Yes</td>
-              <td className="px-4 py-2.5 leading-relaxed text-white/60">The current Bot description/instructions sent with the conversation.</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
     </DocSection>
 
     <DocSection id="props" title="Props">
@@ -319,7 +293,7 @@ export default function App() {
       </DocP>
       <DocCodeBlock
         snippet={`<BSDKChat
-  config={chatConfig}
+  config={bsdkConfig}
   theme={{
     bubble: (role) =>
       role === "user"
@@ -336,7 +310,7 @@ export default function App() {
     <DocSection id="trigger" title="Trigger customization">
       <DocCodeBlock
         snippet={`<BSDKChat
-  config={chatConfig}
+  config={bsdkConfig}
   triggerText="Ask AI"
   triggerImage="/assistant.svg"
   triggerColor="#111111"

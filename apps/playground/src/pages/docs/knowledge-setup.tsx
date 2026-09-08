@@ -31,13 +31,19 @@ const KnowledgeSetup = () => (
       <DocList
         items={[
           <>
-            Create a Bot from the BSDK dashboard.
+            Create a Bot from the{" "}
+            <Link to="/dashboard" className="text-[#B8D96A] underline-offset-4 hover:underline">
+              BSDK dashboard
+            </Link>
+            .
           </>,
           <>
-            Configure Pinecone and Cohere credentials for the Bot.
+            Configure Pinecone and Cohere credentials for the Bot in the BSDK
+            dashboard.
           </>,
           <>
-            Upload the documents that should become part of the Bot&apos;s Knowledge.
+            Upload the documents that should become part of the Bot&apos;s Knowledge
+            in the BSDK dashboard.
           </>,
         ]}
       />
@@ -52,8 +58,8 @@ COHERE_API_KEY=`}
         Pinecone and Cohere credentials are configured.
       </DocP>
       <DocP>
-        For environment variable details, see{" "}
-        <Link to="/docs/environment-variables" className="text-[#B8D96A] underline-offset-4 hover:underline">Environment Variables</Link>.
+        For provider details, see{" "}
+        <Link to="/docs/providers" className="text-[#B8D96A] underline-offset-4 hover:underline">AI Providers</Link>.
       </DocP>
     </DocSection>
 
@@ -79,6 +85,22 @@ const bsdk = createBSDK({
     cohere: knowledgeConfig.cohere,
   },
 });`}
+      />
+      <DocP>
+        Define the <DocInline>knowledgeConfig</DocInline> object in{" "}
+        <DocInline>./bsdk/KnowledgeConfig.ts</DocInline>, reading the credentials
+        you configured earlier from your backend <DocInline>.env</DocInline> file:
+      </DocP>
+      <DocCodeBlock
+        snippet={`export const knowledgeConfig = {
+  pinecone: {
+    apiKey: process.env.PINECONE_API_KEY!,
+    indexHost: process.env.PINECONE_INDEX_HOST!,
+  },
+  cohere: {
+    apiKey: process.env.COHERE_API_KEY!,
+  },
+};`}
       />
       <DocP>
         For provider configuration, see{" "}

@@ -24,8 +24,8 @@ importers:
         specifier: ^4.0.37
         version: 4.0.37(zod@4.5.4)
       '@bsdk/server':
-        specifier: ^0.0.2
-        version: 0.0.2
+        specifier: ^0.0.4
+        version: 0.0.4
       '@langchain/textsplitters':
         specifier: ^1.0.1
         version: 1.0.1(@langchain/core@1.2.9(@opentelemetry/api@1.9.1)(@opentelemetry/sdk-trace-base@2.7.1(@opentelemetry/api@1.9.1))(ws@8.17.1))
@@ -112,8 +112,8 @@ importers:
         specifier: ^1.7.0
         version: 1.8.0(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       '@bsdk/ui':
-        specifier: ^0.0.3
-        version: 0.0.3(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(tailwindcss@4.3.3)(zod@4.5.4)
+        specifier: ^0.0.4
+        version: 0.0.4(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(tailwindcss@4.3.3)(zod@4.5.4)
       '@fontsource-variable/geist':
         specifier: ^5.3.0
         version: 5.3.0
@@ -158,7 +158,7 @@ importers:
         version: 7.18.3(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       shadcn:
         specifier: ^4.17.0
-        version: 4.21.0(typescript@6.0.3)
+        version: 4.21.0(@cfworker/json-schema@4.1.1)(typescript@6.0.3)
       sonner:
         specifier: ^2.0.8
         version: 2.0.8(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
@@ -554,11 +554,11 @@ packages:
       '@types/react':
         optional: true
 
-  '@bsdk/server@0.0.2':
-    resolution: {integrity: sha512-L/qyV2UlLgq400hUcKo6UZSp05HVAcqMMxD4kLTvcKFuYEHZXpOGcaOgxgB2XW21e22PzHJtdCl90j5Enx8WNg==}
+  '@bsdk/server@0.0.4':
+    resolution: {integrity: sha512-RhLiFn2YPBu/mqVJQEUkeFSnSNPFWD6zru239a5faydCshFL0gnSzqGdA4Mo8hLS16oVkWsNad/YX4eW4dzKRA==}
 
-  '@bsdk/ui@0.0.3':
-    resolution: {integrity: sha512-WGOAiccb0yMkGhDZtUx7obubLTwCy58eHAZnsxjDjUgaLqbR5eFvtaZ+B853Ag0eJmryOxkLi/He3aUrwZeuXw==}
+  '@bsdk/ui@0.0.4':
+    resolution: {integrity: sha512-QMuaQePEoYGoj4cuQU5x5yozU57bMnWH2ZVCJBswlibK8VkgEx3PkcApLST2UBQoDLb9OQqGiNcnU1Ds+N87Zg==}
     peerDependencies:
       react: ^19.0.0
       react-dom: ^19.0.0
@@ -4960,7 +4960,7 @@ snapshots:
     optionalDependencies:
       '@types/react': 19.2.18
 
-  '@bsdk/server@0.0.2':
+  '@bsdk/server@0.0.4':
     dependencies:
       '@ai-sdk/groq': 4.0.37(zod@4.5.4)
       '@pinecone-database/pinecone': 8.2.0
@@ -4974,7 +4974,7 @@ snapshots:
       - '@smithy/protocol-http'
       - '@smithy/signature-v4'
 
-  '@bsdk/ui@0.0.3(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(tailwindcss@4.3.3)(zod@4.5.4)':
+  '@bsdk/ui@0.0.4(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(tailwindcss@4.3.3)(zod@4.5.4)':
     dependencies:
       '@ai-sdk/react': 4.0.96(react@19.2.8)(zod@4.5.4)
       '@base-ui/react': 1.8.0(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
@@ -5307,7 +5307,7 @@ snapshots:
 
   '@microsoft/fetch-event-source@2.0.1': {}
 
-  '@modelcontextprotocol/sdk@1.30.0(zod@3.25.76)':
+  '@modelcontextprotocol/sdk@1.30.0(@cfworker/json-schema@4.1.1)(zod@3.25.76)':
     dependencies:
       '@hono/node-server': 2.1.1(hono@4.13.7)
       ajv: 8.20.0
@@ -5326,6 +5326,8 @@ snapshots:
       raw-body: 3.0.2
       zod: 3.25.76
       zod-to-json-schema: 3.25.2(zod@3.25.76)
+    optionalDependencies:
+      '@cfworker/json-schema': 4.1.1
     transitivePeerDependencies:
       - supports-color
 
@@ -8946,14 +8948,14 @@ snapshots:
 
   setprototypeof@1.2.0: {}
 
-  shadcn@4.21.0(typescript@6.0.3):
+  shadcn@4.21.0(@cfworker/json-schema@4.1.1)(typescript@6.0.3):
     dependencies:
       '@babel/core': 7.29.7
       '@babel/parser': 7.29.8
       '@babel/plugin-transform-typescript': 7.29.7(@babel/core@7.29.7)
       '@babel/preset-typescript': 7.29.7(@babel/core@7.29.7)
       '@dotenvx/dotenvx': 1.75.1
-      '@modelcontextprotocol/sdk': 1.30.0(zod@3.25.76)
+      '@modelcontextprotocol/sdk': 1.30.0(@cfworker/json-schema@4.1.1)(zod@3.25.76)
       '@types/validate-npm-package-name': 4.0.2
       browserslist: 4.28.9
       cn: 0.2.6

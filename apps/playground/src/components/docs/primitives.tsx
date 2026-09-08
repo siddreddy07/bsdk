@@ -26,7 +26,7 @@ export const DocP = ({ children }: { children: ReactNode }) => (
 )
 
 export const DocInline = ({ children }: { children: string }) => (
-  <code className="rounded bg-white/10 px-1.5 py-0.5 font-mono text-[13px] text-white/85">
+  <code className="inline-block max-w-full whitespace-nowrap rounded bg-white/10 px-1.5 py-0.5 align-baseline font-mono text-[13px] leading-none text-white/85">
     {children}
   </code>
 )

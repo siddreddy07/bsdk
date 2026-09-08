@@ -4,6 +4,6 @@ import { requireAuth } from '../middleware/auth.middleware.js';
 
 const router = Router();
 
-router.post("/",requireAuth, chatController.chat);
+router.post("/", chatController.chat);
 
 export default router;

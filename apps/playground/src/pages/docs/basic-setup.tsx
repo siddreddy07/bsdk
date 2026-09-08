@@ -169,10 +169,11 @@ const QuickStart = () => {
 
       <DocSection id="account" title="Create BSDK account">
         <DocP>
-          Create a BSDK account or sign in to an existing account.
-        </DocP>
-        <DocP>
-          After signing in, open the BSDK dashboard.
+          Sign up or log in at{" "}
+          <Link to="https://bsdkdev.netlify.app" className="text-[#B8D96A] underline-offset-4 hover:underline">
+            bsdk-live
+          </Link>
+          , then continue to the dashboard to configure your Bot.
         </DocP>
       </DocSection>
 
@@ -188,10 +189,11 @@ const QuickStart = () => {
           This ID is later passed to the frontend:
         </DocP>
         <DocCodeBlock
-          snippet={`const chatConfig = {
-  api: "http://localhost:8080/api/chat",
+          snippet={`const bsdkConfig = {
+  api: "{backend-server}/api/chat",
   botId: "your-bot-id",
-  botDescription: "Your bot description",
+  botDescription: \`Name: Support Bot
+Description: Helps users with account questions\`,
 };`}
         />
       </DocSection>
@@ -235,11 +237,21 @@ const QuickStart = () => {
 PINECONE_INDEX_HOST=
 COHERE_API_KEY=`}
         />
+        <DocNote>
+          These values are referenced by <DocInline>./bsdk/KnowledgeConfig.ts</DocInline>,
+          which supplies the credentials to <DocInline>createBSDK</DocInline>. See{" "}
+          <Link to="/docs/knowledge-setup" className="text-[#B8D96A] underline-offset-4 hover:underline">Knowledge</Link>{" "}
+          for the full setup.
+        </DocNote>
       </DocSection>
 
       <DocSection id="add-knowledge" title="Add Knowledge">
         <DocP>
-          Once the Bot&apos;s Pinecone and Cohere credentials are configured, continue to the document upload step in the BSDK dashboard.
+          Once the Bot&apos;s Pinecone and Cohere credentials are configured, continue to the document upload step in the{" "}
+          <Link to="/dashboard" className="text-[#B8D96A] underline-offset-4 hover:underline">
+            BSDK dashboard
+          </Link>
+          .
         </DocP>
         <DocP>
           Upload the documents that should become part of the Bot&apos;s Knowledge.
@@ -302,14 +314,9 @@ COHERE_API_KEY=`}
         <DocCodeBlock
           snippet={`import { BSDKChat } from "@bsdk/ui";
 import "@bsdk/ui/styles.css";
+import { bsdkConfig } from "@/config/bsdk.config";
 
-const chatConfig = {
-  api: "http://localhost:8080/api/chat",
-  botId: "your-bot-id",
-  botDescription: "Website assistant",
-};
-
-<BSDKChat config={chatConfig} />`}
+<BSDKChat config={bsdkConfig} />`}
         />
         <DocP>
           <DocInline>config.api</DocInline> is the backend chat endpoint. For

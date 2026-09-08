@@ -15,6 +15,9 @@ coverage
 # Turbo
 .turbo
 
+# npm/pnpm package tarballs
+*.tgz
+
 # Vercel
 .vercel
 

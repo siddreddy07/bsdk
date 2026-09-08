@@ -15,11 +15,9 @@ export const docsNav: DocsNavGroup[] = [
     ],
   },
   {
-    title: "Configuration",
+    title: "Backend",
     items: [
-      { label: "AI Providers", href: "/docs/providers" },
-      { label: "Knowledge", href: "/docs/knowledge-setup" },
-      { label: "Environment Variables", href: "/docs/environment-variables" },
+      { label: "BSDK Server", href: "/docs/bsdk-server" },
     ],
   },
   {
@@ -29,9 +27,10 @@ export const docsNav: DocsNavGroup[] = [
     ],
   },
   {
-    title: "Backend",
+    title: "Configuration",
     items: [
-      { label: "BSDK Server", href: "/docs/bsdk-server" },
+      { label: "AI Providers", href: "/docs/providers" },
+      { label: "Knowledge", href: "/docs/knowledge-setup" },
     ],
   },
 ]

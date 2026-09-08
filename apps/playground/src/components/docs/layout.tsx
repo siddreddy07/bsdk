@@ -70,7 +70,7 @@ const DocsLayout = ({
             <SheetContent
               side="left"
               showCloseButton={false}
-              className="w-72 gap-0 overflow-y-auto bg-[#0b0d0c] p-4 text-white"
+              className="docs-scroll w-72 gap-0 overflow-y-auto bg-[#0b0d0c] p-4 text-white"
             >
               <SheetTitle className="px-1 pb-4 text-sm font-semibold text-white">
                 Documentation
@@ -82,7 +82,7 @@ const DocsLayout = ({
           </Sheet>
         </div>
 
-        <aside className="sticky top-24 hidden max-h-[calc(100vh-8rem)] self-start w-60 shrink-0 overflow-y-auto lg:block">
+        <aside className="docs-scroll sticky top-24 hidden max-h-[calc(100vh-8rem)] self-start w-60 shrink-0 overflow-y-auto lg:block">
           <DocsSidebar />
         </aside>
 
@@ -103,7 +103,7 @@ const DocsLayout = ({
           </nav>
         </article>
 
-        <aside className="sticky top-24 hidden max-h-[calc(100vh-8rem)] self-start w-52 shrink-0 overflow-y-auto xl:block">
+        <aside className="docs-scroll sticky top-24 hidden max-h-[calc(100vh-8rem)] self-start w-52 shrink-0 overflow-y-auto xl:block">
           <OnThisPage headings={headings} />
         </aside>
       </div>

@@ -2,6 +2,7 @@ import DocsLayout from "../../components/docs/layout"
 import {
   DocCodeBlock,
   DocInline,
+  DocNote,
   DocP,
   DocSection,
 } from "../../components/docs/primitives"
@@ -149,6 +150,14 @@ const Providers = () => {
       tagline="Configure the AI providers BSDK talks to."
       headings={headings}
     >
+      <DocNote>
+        Run <DocInline>npx @bsdk/cli init</DocInline> from your{" "}
+        <strong className="font-medium text-white/85">backend project root</strong>.
+        It will prompt you to select providers, install the required packages,
+        create <DocInline>bsdk/providers.ts</DocInline>, and set up environment
+        variables automatically.
+      </DocNote>
+
       <DocSection id="supported" title="Supported providers">
         <DocP>
           The CLI allows selecting up to <strong className="font-medium text-white/85">3</strong>{" "}

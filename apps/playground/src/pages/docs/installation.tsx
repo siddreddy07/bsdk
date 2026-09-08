@@ -217,12 +217,16 @@ const Installation = () => (
     </DocSection>
 
     <DocSection id="backend" title="Backend">
+      <DocP>
+        In your backend project root, install <DocInline>@bsdk/server</DocInline>:
+      </DocP>
       <GenericTabs tabs={backendTabs} />
     </DocSection>
 
     <DocSection id="cli" title="CLI">
       <DocP>
-        The CLI is executed rather than installed as a dependency:
+        In your backend project root, run the BSDK CLI. It is executed rather
+        than installed as a dependency:
       </DocP>
       <GenericTabs tabs={cliTabs} />
       <DocP>

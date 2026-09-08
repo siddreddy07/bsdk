@@ -22,6 +22,7 @@ export async function createFileEmbeddings(
     texts: chunks.map((chunk) => chunk.pageContent),
     inputType: "search_document",
     embeddingTypes: ["float"],
+    outputDimension: 1024,
   })
 
   const embeddings = response.embeddings.float

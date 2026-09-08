@@ -14,9 +14,9 @@ import BsdkUi from "./pages/docs/bsdk-ui"
 import BsdkServer from "./pages/docs/bsdk-server"
 import KnowledgeSetup from "./pages/docs/knowledge-setup"
 import Providers from "./pages/docs/providers"
-import EnvironmentVariables from "./pages/docs/environment-variables"
+import NotFound from "./pages/not-found"
 import { BSDKChat } from "@bsdk/ui"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { Toaster } from "@/components/ui/sonner"
 import { Toaster as ShadcnToaster } from "@/components/ui/toast"
 import { useUserStore } from "./store/user.store"
@@ -26,110 +26,74 @@ import { bsdkConfig } from "./config/bsdk.config"
 
 const App = () => {
 
-      const [searchParams, setSearchParams] = useSearchParams()
+  const [searchParams, setSearchParams] = useSearchParams()
+  const setActiveBot = useBotsStore((s)=>s.setActiveBot)
+  const user = useUserStore((s)=>s.user)
+  const navigate = useNavigate()
+  const location = useLocation()
+  const [initError, setInitError] = useState(false)
 
-      const activeBot = useBotsStore((state) => state.activeBot)
-      const setActiveBot = useBotsStore((s)=>s.setActiveBot)
-
-      const navigate = useNavigate()
-
-const location = useLocation()
-
-
-      const chatConfig = {
-  ...bsdkConfig,
-  botId: activeBot?.botId ?? "",
-  botDescription: activeBot
-    ? `Name: ${activeBot.name}\nDescription: ${activeBot.description}`
-    : "",
-}
-
-
-useEffect(() => {
-  const getUser = async () => {
+  const initializeApp = async () => {
+    setInitError(false)
     try {
-      const response = await api.get("/api/auth/me")
-      useUserStore.getState().setUser(response.data.user)
-    } catch {}
-  }
+      const [userResponse] = await Promise.all([
+        api.get("/api/auth/me"),
+        useBotsStore.getState().fetchBots(),
+      ])
 
-  const getBots = async () => {
-    try {
-
-      await useBotsStore.getState().fetchBots()
-
+      useUserStore.getState().setUser(userResponse.data.user)
 
       const bots = useBotsStore.getState().bots
 
-
-      if (bots.length === 0) {
-        return null
-      }
+      if (bots.length === 0) return
 
       const botId = searchParams.get("botId")
-
-      const selectedBot =
-        bots.find((bot) => bot.botId === botId) ?? bots[0]
-
-
+      const selectedBot = bots.find((bot) => bot.botId === botId) ?? bots[0]
       setActiveBot(selectedBot)
 
-      return selectedBot
-    } catch {
-      return null
-    }
-  }
-
-  const initializeApp = async () => {
-
-    const [, bot] = await Promise.all([
-      getUser(),
-      getBots(),
-    ])
-
-
-    if (!bot) return
-
-    if (location.pathname === "/") {
-      const params = new URLSearchParams()
-
-      params.set("botId", bot.botId)
-      params.set("tab", "configuration")
-      params.set("step", "0")
-
-      navigate(`/dashboard?${params.toString()}`, {
-        replace: true,
-      })
-
-      return
-    }
-
-    if (location.pathname === "/dashboard") {
-      const params = new URLSearchParams(searchParams)
-
-      if (!params.get("botId")) {
-        params.set("botId", bot.botId)
-      }
-
-      if (!params.get("tab")) {
+      if (location.pathname === "/") {
+        const params = new URLSearchParams()
+        params.set("botId", selectedBot.botId)
         params.set("tab", "configuration")
-      }
-
-      if (
-        params.get("tab") === "configuration" &&
-        !params.get("step")
-      ) {
         params.set("step", "0")
+
+        if(user){
+          navigate(`/dashboard?${params.toString()}`, { replace: true })
+        }
+        return
       }
 
-      setSearchParams(params, {
-        replace: true,
-      })
+      if (location.pathname === "/dashboard") {
+        const params = new URLSearchParams(searchParams)
+        if (!params.get("botId")) params.set("botId", selectedBot.botId)
+        if (!params.get("tab")) params.set("tab", "configuration")
+        if (params.get("tab") === "configuration" && !params.get("step")) {
+          params.set("step", "0")
+        }
+        setSearchParams(params, { replace: true })
+      }
+    } catch (error) {
+      console.error("Failed to initialize app", error)
+      setInitError(true)
     }
   }
 
-  initializeApp()
-}, [location.pathname])
+  useEffect(() => {
+    initializeApp()
+  }, [location.pathname])
+
+  if (initError) {
+    return (
+      <div className="flex h-screen items-center justify-center bg-background">
+        <div className="text-center space-y-4">
+          <p>Couldn't connect to the server.</p>
+          <button onClick={initializeApp} className="px-4 py-2 bg-primary text-primary-foreground rounded-md">
+            Retry
+          </button>
+        </div>
+      </div>
+    )
+  }
 
 
   return (
@@ -149,12 +113,12 @@ useEffect(() => {
           <Route path="/docs/bsdk-server" element={<BsdkServer />} />
           <Route path="/docs/knowledge-setup" element={<KnowledgeSetup />} />
           <Route path="/docs/providers" element={<Providers />} />
-          <Route path="/docs/environment-variables" element={<EnvironmentVariables />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
       <Footer />
       <div className="sticky bottom-5 right-5 z-50">
-      <BSDKChat config={chatConfig} position="bottom-right" />
+      <BSDKChat config={bsdkConfig} position="bottom-right" />
       </div>
       <Toaster position="top-center"/>
       <ShadcnToaster />
