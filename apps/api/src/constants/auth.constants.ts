@@ -15,7 +15,7 @@ export const ACCESS_TOKEN_MAX_AGE_MS = 15 * 60 * 1000;
 export const ACCESS_TOKEN_COOKIE_OPTIONS = {
   httpOnly: true,
   secure: process.env.NODE_ENV === 'production',
-  sameSite: 'lax' as const,
+  sameSite: 'none' as const,
   maxAge: ACCESS_TOKEN_MAX_AGE_MS,
 };
 
@@ -26,7 +26,7 @@ export const REFRESH_TOKEN_MAX_AGE_MS = 30 * DAYS_TO_MS;
 export const REFRESH_TOKEN_COOKIE_OPTIONS = {
   httpOnly: true,
   secure: process.env.NODE_ENV === 'production',
-  sameSite: 'lax' as const,
+  sameSite: 'none' as const,
   maxAge: REFRESH_TOKEN_MAX_AGE_MS,
   path: '/api/auth',
 };
