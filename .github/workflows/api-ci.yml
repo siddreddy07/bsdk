@@ -4,10 +4,23 @@ on:
   push:
     branches:
       - main
+    paths:
+      - "apps/api/**"
+      - "packages/server/**"
+      - "pnpm-lock.yaml"
+      - "pnpm-workspace.yaml"
+      - "Dockerfile"
+      - ".github/workflows/api-ci.yml"
 
   pull_request:
     branches:
       - main
+    paths:
+      - "apps/api/**"
+      - "pnpm-lock.yaml"
+      - "pnpm-workspace.yaml"
+      - "Dockerfile"
+      - ".github/workflows/api-ci.yml"
 
 permissions:
   contents: read
