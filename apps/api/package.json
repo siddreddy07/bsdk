@@ -13,7 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "@ai-sdk/groq": "^4.0.37",
-    "@bsdk/server": "^0.0.4",
+    "@bsdk/server": "0.0.5",
     "@langchain/textsplitters": "^1.0.1",
     "@llamaindex/llama-cloud": "^2.15.0",
     "@pinecone-database/pinecone": "^8.2.0",
