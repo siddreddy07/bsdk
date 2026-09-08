@@ -73,7 +73,11 @@ const App = () => {
   }
 
   useEffect(() => {
-    initializeApp()
+    const publicRoutes = ["/", "/about", "/help"]
+    const isPublicDocRoute = location.pathname.startsWith("/docs")
+    if (!publicRoutes.includes(location.pathname) && !isPublicDocRoute) {
+      initializeApp()
+    }
   }, [location.pathname])
 
 
