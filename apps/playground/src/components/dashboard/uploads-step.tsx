@@ -51,7 +51,6 @@ const UploadsStep = () => {
     fetchFiles(botId)
   }, [botId, fetchFiles])
 
-  // Total = persisted files + currently added upload cards
   const totalDocs = files.length + docs.length
 
   const canAddMore = totalDocs <= MAX_DOCS

@@ -1,12 +1,20 @@
-FROM node:22-alpine
+FROM node:22-bookworm-slim
 
 WORKDIR /app
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends ca-certificates \
+    && update-ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
 
 RUN corepack enable
 
 COPY . .
 
 RUN pnpm install --frozen-lockfile
+
+# Install Lightpanda Linux binary
+RUN pnpm --filter api exec lightpanda install
 
 RUN pnpm --filter api build
 

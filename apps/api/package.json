@@ -13,9 +13,11 @@
   "license": "ISC",
   "dependencies": {
     "@ai-sdk/groq": "^4.0.37",
-    "@bsdk/server": "0.0.5",
+    "@bsdk/server": "^0.0.7",
     "@langchain/textsplitters": "^1.0.1",
+    "@lightpanda/browser": "^1.6.0",
     "@llamaindex/llama-cloud": "^2.15.0",
+    "@mozilla/readability": "^0.6.0",
     "@pinecone-database/pinecone": "^8.2.0",
     "@trigger.dev/sdk": "4.5.16",
     "bcryptjs": "^3.0.3",
@@ -25,10 +27,13 @@
     "cors": "^2.8.6",
     "express": "^5.2.1",
     "express-rate-limit": "^8.7.0",
+    "jsdom": "^30.0.1",
     "jsonwebtoken": "^9.0.3",
     "mongodb": "^7.5.0",
     "morgan": "^1.11.0",
     "multer": "^2.3.0",
+    "playwright-core": "^1.63.0",
+    "turndown": "^7.2.4",
     "zod": "^4.5.4"
   },
   "devDependencies": {
@@ -36,10 +41,12 @@
     "@types/cookie-parser": "^1.4.10",
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
+    "@types/jsdom": "^30.0.0",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/morgan": "^1.9.10",
     "@types/multer": "^2.2.0",
     "@types/node": "^26.2.0",
+    "@types/turndown": "^5.0.6",
     "tsx": "^4.23.12",
     "typescript": "^7.0.2"
   }

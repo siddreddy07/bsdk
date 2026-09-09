@@ -1,6 +1,6 @@
 {
   "name": "@bsdk/ui",
-  "version": "0.0.5",
+  "version": "0.0.7",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",

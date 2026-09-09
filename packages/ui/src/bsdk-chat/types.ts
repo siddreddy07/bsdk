@@ -1,3 +1,5 @@
+import type { UIMessage } from "ai";
+
 export type ChatMessage = {
   id: string;
   role: "user" | "assistant" | "system";
@@ -24,4 +26,8 @@ export type BSDKChatProps = {
   triggerColor?: string;
   position?: "bottom-left" | "bottom-right";
   config: BSDKConfig;
+  initialMessages?: UIMessage[];
+  onMessagesChange?: (messages: UIMessage[]) => void;
+  chatId?: string;
+  canSend?: boolean;
 };

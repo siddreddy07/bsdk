@@ -10,6 +10,13 @@ type Vector = {
      chunkIndex: number
 }
 
+export type DemoVector = {
+  id: string;
+  pageContent: string;
+  chunkIndex: number;
+  values: number[];
+};
+
 
 
 
@@ -44,6 +51,28 @@ export async function storeVectorInPinecone(
 
 
     }
+
+
+export async function storeDemoVectors(
+  pineconeIndex: ReturnType<typeof createPineconeIndex>,
+  demoId: string,
+  sourceUrl: string,
+  vectors: DemoVector[]
+) {
+  const namespace = pineconeIndex.namespace(`demo_${demoId}`);
+
+  await namespace.upsert({
+    records: vectors.map((vector) => ({
+      id: vector.id,
+      values: vector.values,
+      metadata: {
+        pageContent: vector.pageContent,
+        chunkIndex: vector.chunkIndex,
+        sourceUrl,
+      },
+    })),
+  });
+}
 
 
 // export async function searchVectorsInPinecone(

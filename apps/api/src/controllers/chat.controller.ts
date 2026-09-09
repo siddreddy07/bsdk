@@ -15,10 +15,13 @@ const bsdk = createBSDK({
 
 export async function chat(req: Request, res: Response) {
   const { messages } = req.body;
+
+  console.log('Messages :',messages)
   
   const {botId,description} = req.body
 
   console.log("BOt :",{botId,description})
+
 
   const response = await bsdk.chat(messages,botId.toString(),description);
 

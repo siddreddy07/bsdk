@@ -12,6 +12,7 @@ import uploadRoutes from './routes/upload.routes.js';
 import fileRouter from './routes/file.routes.js';
 import knowledgeRoutes from './routes/knowledge.routes.js'
 import botRoutes from './routes/bot.routes.js';
+import tryRoutes from './routes/try.route.js'
 
 
 const app = express();
@@ -25,6 +26,7 @@ app.use(cors({
 
 app.use(express.json());
 
+app.set("trust proxy", 1);
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
@@ -48,6 +50,7 @@ app.use("/api/upload", uploadRoutes);
 app.use("/api/files", fileRouter);
 app.use("/api/bots", botRoutes);
 app.use("/api/knowledge", knowledgeRoutes);
+app.use("/api/try", tryRoutes);
 
 
 app.get("/",(_req, res) => {

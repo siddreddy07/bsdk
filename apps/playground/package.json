@@ -11,11 +11,12 @@
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",
-    "@bsdk/ui": "0.0.5",
+    "@bsdk/ui": "^0.0.7",
     "@fontsource-variable/geist": "^5.3.0",
     "@shadcn/react": "^0.3.0",
     "@tailwindcss/vite": "^4.3.3",
     "@trigger.dev/react-hooks": "^4.5.16",
+    "ai": "^7.0.85",
     "axios": "^1.20.0",
     "bson": "^7.3.2",
     "class-variance-authority": "^0.7.1",

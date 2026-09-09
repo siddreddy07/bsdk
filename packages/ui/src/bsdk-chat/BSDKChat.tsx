@@ -23,6 +23,7 @@ import {
 import { Message, MessageContent } from "../components/ui/message";
 import ChatHeader from "./ChatHeader";
 import type { BSDKChatProps, BSDKChatTheme } from "./types";
+import { useEffect } from "react";
 
 const ChatEmptyState = ({
   welcomeText
@@ -38,6 +39,8 @@ const ChatEmptyState = ({
     </div>
   );
 };
+
+  
 
 const ChatContent = ({
   messages,
@@ -152,13 +155,15 @@ const ChatInput = ({
   onChange,
   onSend,
   placeholder,
-  status
+  status,
+   canSend
 }: {
   value: string;
   onChange: (value: string) => void;
   onSend: () => void;
   placeholder?: string;
   status? : string;
+   canSend : boolean,
 }) => {
   
       const isGenerating =
@@ -167,7 +172,7 @@ const ChatInput = ({
   const handleSubmit = (event: FormEvent) => {
 
     event.preventDefault();
-    if(isGenerating) return
+    if(!canSend || isGenerating) return
     onSend();
   };
 
@@ -175,7 +180,7 @@ const ChatInput = ({
     if (event.key === "Enter" && !event.shiftKey) {
       event.preventDefault();
 
-      if(isGenerating) return
+      if(!canSend || isGenerating) return
 
       onSend();
     }
@@ -200,7 +205,7 @@ const ChatInput = ({
         variant="ghost"
         size="icon"
         className="shrink-0 size-9 bg-gradient-to-br from-[#B8D96A] via-[#8ac94e] to-[#6a9e33] text-white hover:brightness-110 hover:saturate-110 disabled:opacity-50 disabled:cursor-not-allowed"
-        disabled={isGenerating || !value.trim()}
+        disabled={isGenerating || !canSend || !value.trim()}
         aria-label="Send message"
       >
         <SendHorizontal />
@@ -220,13 +225,19 @@ const BSDKChat = ({
   triggerImage,
   triggerColor,
   position,
-  config
+  config,
+  chatId,
+    initialMessages, 
+    canSend = true,
+  onMessagesChange,
 }: BSDKChatProps) => {
   const [input, setInput] = useState("");
 
   console.log("BSDKChat mounted")
 
   const { messages, sendMessage,status, error } = useChat({
+     id: chatId,
+    messages: initialMessages,
     transport: new DefaultChatTransport({
       api: config.api,
        credentials: "include",
@@ -236,6 +247,11 @@ const BSDKChat = ({
     },
     }),
   });
+
+  useEffect(() => {
+  onMessagesChange?.(messages);
+}, [messages, onMessagesChange]);
+
 
   const handleSend = () => {
     const trimmed = input.trim();
@@ -318,6 +334,7 @@ const BSDKChat = ({
             onSend={handleSend}
             placeholder={placeholder}
             status={status}
+             canSend = {canSend}
           />
         </PopoverContent>
       </Popover>

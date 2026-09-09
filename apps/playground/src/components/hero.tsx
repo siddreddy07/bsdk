@@ -68,15 +68,15 @@ const Hero = () => {
           <div className="mt-1 flex flex-wrap items-center justify-center gap-2.5 sm:mt-2 sm:gap-3">
             <AuthPopover showAvatar={false} triggerClassName="h-10 rounded-full bg-white px-5 text-black hover:bg-white cursor-pointer sm:h-11 sm:px-6" />
             <Link
-              to={"/docs"}
+              to={"/try"}
               className="inline-flex h-10 items-center rounded-full border border-white/15 px-5 text-sm font-medium text-white/80 transition-colors outline-none hover:bg-white/5 hover:text-white focus-visible:ring-3 focus-visible:ring-ring/50 sm:h-11 sm:px-6"
             >
-              Documentation
+              Try it out
             </Link>
           </div>
 
-          <div className="mt-2 flex w-1/2  md:max-w-sm items-center justify-between gap-2.5 rounded-xl border border-white/10 bg-white/5 py-2 pr-1.5 pl-3 sm:mt-3 sm:gap-3 sm:py-2.5 sm:pr-2 sm:pl-4">
-            <code className="select-all text-[13px] font-medium text-white/80 sm:text-sm">
+          <div className="mt-2 flex w-full max-w-xs items-center justify-between gap-1.5 rounded-lg border border-white/10 bg-white/5 py-1 pr-1.5 pl-2.5 sm:mt-3 sm:gap-2 sm:max-w-sm sm:py-1.5 sm:rounded-xl sm:pl-3">
+            <code className="truncate select-all text-[13px] font-medium whitespace-nowrap text-white/80 sm:text-sm">
               pnpm dlx @bsdk/cli init
             </code>
             <CopyButton text="pnpm dlx @bsdk/cli init" />

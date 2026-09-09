@@ -12,6 +12,12 @@ const splitter = new RecursiveCharacterTextSplitter({
   chunkOverlap: 200,
 })
 
+
+export type DemoChunk = {
+  pageContent: string;
+  chunkIndex: number;
+};
+
 export async function chunkDocumentPages(
   pages: DocumentPage[]
 ): Promise<DocumentChunk[]> {
@@ -30,4 +36,16 @@ export async function chunkDocumentPages(
   }
 
   return chunks
+}
+
+
+export async function chunkDemoMarkdown(
+  markdown: string
+): Promise<DemoChunk[]> {
+  const texts = await splitter.splitText(markdown);
+
+  return texts.map((text, index) => ({
+    pageContent: text,
+    chunkIndex: index,
+  }));
 }

@@ -14,7 +14,7 @@ export function createBSDK({ model,knowledge }: BSDKOptions) {
       model,
       messages,
       knowledge,
-      botId ? `bot_${botId}` : undefined,
+      botId ? botId : undefined,
       description
     );
 

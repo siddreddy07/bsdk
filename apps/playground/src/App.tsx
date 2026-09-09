@@ -14,15 +14,15 @@ import BsdkUi from "./pages/docs/bsdk-ui"
 import BsdkServer from "./pages/docs/bsdk-server"
 import KnowledgeSetup from "./pages/docs/knowledge-setup"
 import Providers from "./pages/docs/providers"
+import Tryout from "./pages/tryout"
 import NotFound from "./pages/not-found"
-import { BSDKChat } from "@bsdk/ui"
 import { useEffect } from "react"
 import { Toaster } from "@/components/ui/sonner"
 import { Toaster as ShadcnToaster } from "@/components/ui/toast"
 import { useUserStore } from "./store/user.store"
 import { useBotsStore } from "./store/bots.store"
 import api from "./lib/axiosInstace"
-import { bsdkConfig } from "./config/bsdk.config"
+import BSDKAssistant from "./components/BSDKAssistant"
 
 const App = () => {
 
@@ -73,7 +73,7 @@ const App = () => {
   }
 
   useEffect(() => {
-    const publicRoutes = ["/", "/about", "/help"]
+    const publicRoutes = ["/", "/about", "/help", "/try"]
     const isPublicDocRoute = location.pathname.startsWith("/docs")
     if (!publicRoutes.includes(location.pathname) && !isPublicDocRoute) {
       initializeApp()
@@ -90,6 +90,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/help" element={<Help />} />
+          <Route path="/try" element={<Tryout />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/docs" element={<Docs />} />
           <Route path="/docs/installation" element={<Installation />} />
@@ -103,7 +104,9 @@ const App = () => {
       </main>
       <Footer />
       <div className="sticky bottom-5 right-5 z-50">
-      <BSDKChat config={bsdkConfig} position="bottom-right" />
+
+        <BSDKAssistant/>
+
       </div>
       <Toaster position="top-center"/>
       <ShadcnToaster />
