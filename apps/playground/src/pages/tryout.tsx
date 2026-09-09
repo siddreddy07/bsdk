@@ -45,7 +45,15 @@ const Tryout = () => {
   const handleTrain = async () => {
     if (!result) return
 
+   const MIN_MARKDOWN_LENGTH = 500;
+
+if (result.markdown.trim().length < MIN_MARKDOWN_LENGTH) {
+  toast.error("Not enough content found on this page.");
+  return
+}
+
     setTraining(true)
+
 
     try {
       const { demoId } = getTrySession()
