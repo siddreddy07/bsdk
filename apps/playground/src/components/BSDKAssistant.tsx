@@ -13,14 +13,6 @@ export default function BSDKAssistant() {
   const isTryRoute = pathname === "/try";
   const chatCount = getTryChatCount();
 
-  const [messageStats, setMessageStats] = useState(() => {
-    const messages = getTryMessages();
-    return {
-      user: messages.filter((m) => m.role === "user").length,
-      assistant: messages.filter((m) => m.role === "assistant").length,
-    };
-  });
-
   const [UiMessages] = useState(() => getTryMessages());
 
   useEffect(() => {
@@ -29,10 +21,6 @@ export default function BSDKAssistant() {
 
   const handleMessagesChange = useCallback((messages: UIMessage[]) => {
     saveTryMessages(messages);
-    setMessageStats({
-      user: messages.filter((m) => m.role === "user").length,
-      assistant: messages.filter((m) => m.role === "assistant").length,
-    });
   }, []);
 
   const { demoId } = getTrySession();
