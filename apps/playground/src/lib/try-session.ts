@@ -68,6 +68,11 @@ export const incrementTryChatCount = (): number => {
 export const getTryMessages = (): UIMessage[] =>
   getTrySession().messages;
 
+export const getMarkdown = ()=>{
+  const markdown = getTrySession().markdown
+  return (markdown?.trim().length ?? 0) >= 500 ? true : false
+}
+
 export const saveTryMessages = (messages: UIMessage[]): void => {
   const session = getTrySession();
 

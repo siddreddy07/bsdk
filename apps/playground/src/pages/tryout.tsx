@@ -41,13 +41,16 @@ const Tryout = () => {
   const [error, setError] = useState<string | null>(null)
   const [fieldError, setFieldError] = useState<string | null>(null)
   const [training, setTraining] = useState(false)
+  
+  const MIN_MARKDOWN_LENGTH = 500;
 
+  let canSend = (result?.markdown.trim().length ?? 0) >= MIN_MARKDOWN_LENGTH 
+  
   const handleTrain = async () => {
     if (!result) return
 
-   const MIN_MARKDOWN_LENGTH = 500;
 
-if (result.markdown.trim().length < MIN_MARKDOWN_LENGTH) {
+if (!canSend) {
   toast.error("Not enough content found on this page.");
   return
 }
