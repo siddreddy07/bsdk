@@ -233,8 +233,6 @@ const BSDKChat = ({
 }: BSDKChatProps) => {
   const [input, setInput] = useState("");
 
-  console.log("BSDKChat mounted")
-
   const { messages, sendMessage,status, error } = useChat({
      id: chatId,
     messages: initialMessages,

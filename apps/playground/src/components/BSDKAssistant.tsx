@@ -5,7 +5,7 @@ import type { UIMessage } from "ai";
 import { BSDKChat } from "@bsdk/ui";
 import { bsdkConfig } from "@/config/bsdk.config";
 import AuthPopover from "./auth-popover";
-import { getTrySession, getTryMessages, saveTryMessages, getTryChatCount, getMarkdown } from "@/lib/try-session";
+import { getTrySession, getTryMessages, saveTryMessages, getTryChatCount, getMarkdown, getUploadStatus } from "@/lib/try-session";
 
 export default function BSDKAssistant() {
   const { pathname } = useLocation();
@@ -40,17 +40,22 @@ export default function BSDKAssistant() {
     return <BSDKChat config={chatConfig} position="bottom-right" />;
   }
 
+    const uploaded = getUploadStatus()
+
+
+    console.log('uploaded :',uploaded)
+
 
 
   return (
     <div>
         <BSDKChat
-        title={'BSDK Try Out'} welcomeText={'Tryout available after uploading Markdown.'} placeholder={'Try a Conversation (Max 3/day on tryout)'}
+        title={'BSDK Try Out'} welcomeText={'Tryout available after uploading Markdown.'} placeholder={'Try a Conversation'}
         config={chatConfig}
           position="bottom-right"
           initialMessages={UiMessages}
           onMessagesChange={handleMessagesChange}
-          canSend={chatCount <= 3 && markdown}
+          canSend={chatCount <= 3 && markdown && uploaded}
         />
 
 

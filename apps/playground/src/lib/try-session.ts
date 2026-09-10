@@ -7,6 +7,7 @@ export type TrySession = {
   messages: UIMessage[];
   markdown?: string;
   sourceUrl?: string;
+  uploaded?: boolean;
 };
 
 const SESSION_KEY = "bsdk_try_session";
@@ -43,6 +44,7 @@ export const getTrySession = (): TrySession => {
           messages: Array.isArray(session.messages) ? session.messages : [],
           markdown: typeof session.markdown === "string" ? session.markdown : undefined,
           sourceUrl: typeof session.sourceUrl === "string" ? session.sourceUrl : undefined,
+          uploaded: typeof session.uploaded === "boolean" ? session.uploaded : false,
         };
       }
     } catch {
@@ -52,6 +54,11 @@ export const getTrySession = (): TrySession => {
 
   return saveSession(createSession());
 };
+
+export const getUploadStatus = ()=>{
+  const status = getTrySession().uploaded
+  return status
+}
 
 export const getTryChatCount = (): number =>
   getTrySession().chatCount;
@@ -90,5 +97,15 @@ export const saveTryResult = (markdown: string, sourceUrl: string): void => {
     ...session,
     markdown,
     sourceUrl,
+    uploaded: false,
+  });
+};
+
+export const markAsUploaded = (): void => {
+  const session = getTrySession();
+
+  saveSession({
+    ...session,
+    uploaded: true,
   });
 };

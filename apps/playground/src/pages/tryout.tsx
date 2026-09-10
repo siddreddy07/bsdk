@@ -8,16 +8,18 @@ import {
   Loader2,
   XCircle,
   Upload,
+  Check,
 } from "lucide-react"
 import { toast } from "sonner"
 import type { AxiosError } from "axios"
 
+import { cn } from "cn"
 import { AnimatedGridPattern } from "@/components/ui/animated-grid-pattern"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import api from "@/lib/axiosInstace"
 import { TryoutSchema } from "@/schemas/tryout.schema"
-import { getTrySession, saveTryResult } from "@/lib/try-session"
+import { getTrySession, saveTryResult, markAsUploaded } from "@/lib/try-session"
 
 type TryoutResult = {
   title: string
@@ -35,25 +37,45 @@ const getUrlError = (value: string) => {
 }
 
 const Tryout = () => {
-  const [url, setUrl] = useState("")
+  const [url, setUrl] = useState(() => {
+    const s = getTrySession();
+    return s.sourceUrl || "";
+  });
   const [loading, setLoading] = useState(false)
-  const [result, setResult] = useState<TryoutResult | null>(null)
+  const [result, setResult] = useState<TryoutResult | null>(() => {
+    const s = getTrySession();
+    if (s.markdown && s.sourceUrl) {
+      return {
+        title: "",
+        sourceUrl: s.sourceUrl,
+        markdown: s.markdown,
+      };
+    }
+    return null;
+  });
   const [error, setError] = useState<string | null>(null)
   const [fieldError, setFieldError] = useState<string | null>(null)
   const [training, setTraining] = useState(false)
-  
+
   const MIN_MARKDOWN_LENGTH = 500;
 
-  let canSend = (result?.markdown.trim().length ?? 0) >= MIN_MARKDOWN_LENGTH 
+  const [uploaded, setUploaded] = useState(() => {
+    const s = getTrySession();
+    return !!s.uploaded;
+  });
+
+  const hasFetched = !!(result?.markdown && result?.sourceUrl);
+  const canFetch = !hasFetched;
+  const canSend = (result?.markdown.trim().length ?? 0) >= MIN_MARKDOWN_LENGTH
+
   
   const handleTrain = async () => {
     if (!result) return
 
-
-if (!canSend) {
-  toast.error("Not enough content found on this page.");
-  return
-}
+    if (!canSend) {
+      toast.error("Not enough content found on this page.");
+      return
+    }
 
     setTraining(true)
 
@@ -68,6 +90,8 @@ if (!canSend) {
       })
 
       if (data?.success) {
+        setUploaded(true);
+        markAsUploaded();
         toast.success(data.message || "Uploaded Successfully!")
       } else {
         toast.error(data?.error || "Failed to upload markdown")
@@ -155,26 +179,27 @@ if (!canSend) {
           <div className="flex flex-col gap-2.5 sm:flex-row sm:items-center sm:gap-2">
             <div className="relative flex-1">
               <Globe className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-white/40" />
-              <Input
-                id="tryout-url"
-                type="url"
-                inputMode="url"
-                autoComplete="url"
-                spellCheck={false}
-                placeholder="https://example.com"
-                value={url}
-                onChange={(e) => {
-                  const value = e.target.value
-                  setUrl(value)
-                  setFieldError(getUrlError(value))
-                }}
-                aria-invalid={fieldError ? true : undefined}
-                className="h-11 w-full rounded-xl border-white/15 bg-white/5 pl-10 text-white placeholder:text-white/35 focus-visible:border-[#B8D96A]/60 focus-visible:ring-[#B8D96A]/20 aria-invalid:border-red-500/60 aria-invalid:ring-red-500/20 [&::selection]:bg-[#B8D96A]/30"
-              />
+                <Input
+                  id="tryout-url"
+                  type="url"
+                  inputMode="url"
+                  autoComplete="url"
+                  spellCheck={false}
+                  placeholder="https://example.com"
+                  value={url}
+                  readOnly={hasFetched}
+                  onChange={(e) => {
+                    const value = e.target.value
+                    setUrl(value)
+                    setFieldError(getUrlError(value))
+                  }}
+                  aria-invalid={fieldError ? true : undefined}
+                  className={cn("h-11 w-full rounded-xl border-white/15 bg-white/5 pl-10 text-white placeholder:text-white/35 focus-visible:border-[#B8D96A]/60 focus-visible:ring-[#B8D96A]/20 aria-invalid:border-red-500/60 aria-invalid:ring-red-500/20 [&::selection]:bg-[#B8D96A]/30", hasFetched && "cursor-not-allowed opacity-60")}
+                />
             </div>
             <Button
               type="submit"
-              disabled={loading || fieldError ? true : false || !url.trim()}
+              disabled={!canFetch || loading || !!fieldError || !url.trim()}
               className="h-11 shrink-0 cursor-pointer gap-2 rounded-xl bg-[#B8D96A] px-5 font-semibold text-black hover:bg-[#c8e57f] disabled:cursor-not-allowed disabled:opacity-60 sm:min-w-32"
             >
               {loading ? (
@@ -215,9 +240,9 @@ if (!canSend) {
 
           {result && !loading && (
             <div className="overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-xl">
-              <div className="flex items-start justify-between gap-3 border-b border-white/10 p-4 sm:p-5">
-                <div className="flex flex-col gap-3">
-                  <h2 className="min-w-0 truncate text-base font-semibold text-white">
+              <div className="flex flex-col gap-3 border-b border-white/10 p-4 sm:flex-row sm:items-start sm:justify-between sm:gap-3 sm:p-5">
+                <div className="flex flex-col gap-2.5">
+                  <h2 className="min-w-0 break-words text-base font-semibold text-white">
                     {result.title || "Untitled"}
                   </h2>
                   <a
@@ -233,18 +258,23 @@ if (!canSend) {
                 <Button
                   size="sm"
                   onClick={handleTrain}
-                  disabled={training}
-                  className="shrink-0 gap-1.5"
+                  disabled={training || !canSend || uploaded}
+                  className="w-full shrink-0 gap-1.5 rounded-xl bg-[#B8D96A] px-4 font-semibold text-black hover:bg-[#c8e57f] disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto sm:min-w-24"
                 >
                   {training ? (
                     <>
                       <Loader2 className="size-3.5 animate-spin" />
-                      Training…
+                      Uploading
+                    </>
+                  ) : uploaded ? (
+                    <>
+                      <Check className="size-3.5" />
+                      Uploaded
                     </>
                   ) : (
                     <>
                       <Upload className="size-3.5" />
-                      Train
+                      Upload
                     </>
                   )}
                 </Button>

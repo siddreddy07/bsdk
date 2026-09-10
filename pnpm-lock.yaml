@@ -133,8 +133,8 @@ importers:
         specifier: ^1.7.0
         version: 1.8.0(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       '@bsdk/ui':
-        specifier: ^0.0.7
-        version: 0.0.7(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(tailwindcss@4.3.3)(zod@4.5.4)
+        specifier: ^0.0.8
+        version: 0.0.8(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(tailwindcss@4.3.3)(zod@4.5.4)
       '@fontsource-variable/geist':
         specifier: ^5.3.0
         version: 5.3.0
@@ -593,8 +593,8 @@ packages:
   '@bsdk/server@0.0.7':
     resolution: {integrity: sha512-8HRrj7FhHTy95b8cd/q4UhNsPPJeR1y3RzPBeFwztpRWqM0STkB4vYzcK6e0GUjdlGgbv8bdZxM0T2ZpW8SO6Q==}
 
-  '@bsdk/ui@0.0.7':
-    resolution: {integrity: sha512-VHqq/Yhvo93w8jAGemtArHUeNk+B2NKA0cxr1ooq9McXFPfHMzOuk6GzZBUSItCcg6xWYGcmqINuOKopgFwAcw==}
+  '@bsdk/ui@0.0.8':
+    resolution: {integrity: sha512-9W6jw36cvFHLbddCkKdhyFgfqbIwgTVIjg/dA1KHO2gTQZmRPxdyPQKgatm1cdgJNCNtYlcXtfaSmDHwMTnj2Q==}
     peerDependencies:
       react: ^19.0.0
       react-dom: ^19.0.0
@@ -5236,7 +5236,7 @@ snapshots:
       - '@smithy/protocol-http'
       - '@smithy/signature-v4'
 
-  '@bsdk/ui@0.0.7(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(tailwindcss@4.3.3)(zod@4.5.4)':
+  '@bsdk/ui@0.0.8(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(tailwindcss@4.3.3)(zod@4.5.4)':
     dependencies:
       '@ai-sdk/react': 4.0.96(react@19.2.8)(zod@4.5.4)
       '@base-ui/react': 1.8.0(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
