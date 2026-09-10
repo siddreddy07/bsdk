@@ -22,6 +22,23 @@ export async function tryWebsite(req: Request, res: Response) {
   } catch (error) {
     console.error("Try website error:", error);
 
+    // Return 422 for fetch failures (website blocked access)
+    if (error instanceof Error) {
+      if (error.message.includes("Failed to fetch page")) {
+        return res.status(422).json({
+          error: "PAGE_NOT_ACCESSIBLE",
+          message:
+            "This page blocks automated access. Try another public page.",
+        });
+      }
+      if (error.message.includes("Could not extract rendered page content")) {
+        return res.status(422).json({
+          error: "CONTENT_EXTRACTION_FAILED",
+          message: "Could not extract content from this page.",
+        });
+      }
+    }
+
     return res.status(500).json({
       error:
         error instanceof Error
