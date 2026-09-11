@@ -15,8 +15,8 @@
     "@ai-sdk/groq": "^4.0.37",
     "@bsdk/server": "^0.0.7",
     "@langchain/textsplitters": "^1.0.1",
-    "@lightpanda/browser": "^1.6.0",
     "@llamaindex/llama-cloud": "^2.15.0",
+    "@mendable/firecrawl-js": "^4.39.0",
     "@mozilla/readability": "^0.6.0",
     "@pinecone-database/pinecone": "^8.2.0",
     "@trigger.dev/sdk": "4.5.16",
@@ -32,7 +32,6 @@
     "mongodb": "^7.5.0",
     "morgan": "^1.11.0",
     "multer": "^2.3.0",
-    "playwright-core": "^1.63.0",
     "turndown": "^7.2.4",
     "zod": "^4.5.4"
   },

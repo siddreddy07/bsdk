@@ -13,9 +13,6 @@ COPY . .
 
 RUN pnpm install --frozen-lockfile
 
-# Install Lightpanda Linux binary
-RUN pnpm --filter api exec lightpanda install
-
 RUN pnpm --filter api build
 
 EXPOSE 8080

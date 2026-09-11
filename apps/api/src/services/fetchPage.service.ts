@@ -1,17 +1,7 @@
 import { JSDOM } from "jsdom";
 import { Readability } from "@mozilla/readability";
 import TurndownService from "turndown";
-import { fetchRenderedPage } from "./lightpanda.service.js";
-
-const lpdopts = {
-  host: "127.0.0.1",
-  port: 9222,
-};
-
-export type lpdoptsType = {
-    host:string,
-    port:number
-}
+import { fetchRenderedPage } from "./firecrawl.service.js";
 
 function extractMarkdown(html: string, url: string) {
   const dom = new JSDOM(html, { url });
@@ -80,9 +70,9 @@ export async function fetchPage(url: string) {
   }
 
   // SPA fallback
-  console.log("Static extraction failed → using Lightpanda");
+  console.log("Static extraction failed → using Firecrawl");
 
-  const renderedHtml = await fetchRenderedPage(url,lpdopts);
+  const renderedHtml = await fetchRenderedPage(url);
 
   const renderedResult = extractMarkdown(renderedHtml, url);
 
@@ -90,7 +80,7 @@ export async function fetchPage(url: string) {
     throw new Error("Could not extract rendered page content");
   }
 
-  console.log("Lightpanda extraction succeeded");
+  console.log("Firecrawl extraction succeeded");
 
   return renderedResult;
 }
