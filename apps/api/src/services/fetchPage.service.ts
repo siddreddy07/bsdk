@@ -1,86 +1,17 @@
-import { JSDOM } from "jsdom";
-import { Readability } from "@mozilla/readability";
-import TurndownService from "turndown";
 import { fetchRenderedPage } from "./firecrawl.service.js";
 
-function extractMarkdown(html: string, url: string) {
-  const dom = new JSDOM(html, { url });
-
-  const article = new Readability(dom.window.document).parse();
-
-  if (!article?.textContent?.trim()) {
-    return null;
-  }
-
-  const turndown = new TurndownService({
-    headingStyle: "atx",
-    bulletListMarker: "-",
-    codeBlockStyle: "fenced",
-  });
-
-  const markdown = turndown.turndown(article.content ?? "").trim();
-
-  if (!markdown) {
-    return null;
-  }
-
-  return {
-    title: article.title ?? "",
-    markdown,
-    sourceUrl: url,
-  };
-}
-
 export async function fetchPage(url: string) {
-  // Fast/cheap path with browser-like headers to avoid 403 errors
-  const response = await fetch(url, {
-    headers: {
-      "User-Agent":
-        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
-      Accept:
-        "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
-      "Accept-Language": "en-US,en;q=0.9",
-      "Accept-Encoding": "gzip, deflate, br",
-      Referer: url,
-      "Sec-Ch-Ua": '"Not_A Brand";8="Chromium";99',
-      "Sec-Ch-Ua-Mobile": "?0",
-      "Sec-Ch-Ua-Platform": '"Windows"',
-      "Sec-Fetch-Dest": "document",
-      "Sec-Fetch-Mode": "navigate",
-      "Sec-Fetch-Site": "none",
-      "Sec-Fetch-User": "?1",
-      "Upgrade-Insecure-Requests": "1",
-    },
-    redirect: "follow",
-  });
+  const result = await fetchRenderedPage(url);
 
-  if (!response.ok) {
-    throw new Error(
-      `Failed to fetch page: ${response.status} ${response.statusText}`
-    );
-  }
-
-  const html = await response.text();
-
-  const result = extractMarkdown(html, url);
-
-  if (result) {
-    console.log("Static extraction succeeded");
-    return result;
-  }
-
-  // SPA fallback
-  console.log("Static extraction failed → using Firecrawl");
-
-  const renderedHtml = await fetchRenderedPage(url);
-
-  const renderedResult = extractMarkdown(renderedHtml, url);
-
-  if (!renderedResult) {
-    throw new Error("Could not extract rendered page content");
+  if (!result.markdown) {
+    throw new Error(`Could not extract rendered page content`);
   }
 
   console.log("Firecrawl extraction succeeded");
 
-  return renderedResult;
+  return {
+    title: result.title,
+    markdown: result.markdown,
+    sourceUrl: url,
+  };
 }
