@@ -75,6 +75,8 @@ const Hero = () => {
             </Link>
           </div>
 
+          <Link to={"/docs"} className="text-white/50 block md:hidden -mb-2 underline">Explore Docs</Link>
+
           <div className="mt-2 flex w-full max-w-xs items-center justify-between gap-1.5 rounded-lg border border-white/10 bg-white/5 py-1 pr-1.5 pl-2.5 sm:mt-3 sm:gap-2 sm:max-w-sm sm:py-1.5 sm:rounded-xl sm:pl-3">
             <code className="truncate select-all text-[13px] font-medium whitespace-nowrap text-white/80 sm:text-sm">
               pnpm dlx @bsdk/cli init
@@ -124,9 +126,13 @@ const Hero = () => {
               </span>
             ))}
           </div>
+            
+              <a href="https://www.producthunt.com/products/bsdk-2?embed=true&amp;utm_source=badge-featured&amp;utm_medium=badge&amp;utm_campaign=badge-bsdk-2" target="_blank" rel="noopener noreferrer"><img alt="BSDK - Add AI chat to any website with an embeddable SDK | Product Hunt" width="250" height="54" className="max-w-[180px] h-auto sm:max-w-[220px] md:max-w-[250px]" src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1246351&amp;theme=light&amp;t=1789224070402" /></a>
+
+
         </div>
 
-        <div className="mt-12 w-full max-w-4xl rounded-2xl border border-white/10 bg-white/[0.04] p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] backdrop-blur-xl sm:mt-16 sm:p-8 lg:mt-20 lg:p-10">
+        <div className="mt-10 w-full max-w-4xl rounded-2xl border border-white/10 bg-white/[0.04] p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] backdrop-blur-xl sm:mt-16 sm:p-8 lg:mt-20 lg:p-10">
           <div className="flex flex-col items-center gap-3 text-center">
             <h2 className="text-sm font-semibold tracking-wide text-white/90">
               BSDK Runtime
