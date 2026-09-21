@@ -127,7 +127,37 @@ const Hero = () => {
             ))}
           </div>
             
-              <a href="https://www.producthunt.com/products/bsdk-2?embed=true&amp;utm_source=badge-featured&amp;utm_medium=badge&amp;utm_campaign=badge-bsdk-2" target="_blank" rel="noopener noreferrer"><img alt="BSDK - Add AI chat to any website with an embeddable SDK | Product Hunt" width="250" height="54" className="max-w-[180px] h-auto sm:max-w-[220px] md:max-w-[250px]" src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1246351&amp;theme=light&amp;t=1789224070402" /></a>
+              <div className="mt-2.5 flex flex-wrap items-center justify-center gap-3 sm:mt-3 sm:gap-5">
+            <a
+              href="https://www.producthunt.com/products/bsdk-2?embed=true&amp;utm_source=badge-featured&amp;utm_medium=badge&amp;utm_campaign=badge-bsdk-2"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex shrink-0 items-center transition-opacity duration-300 hover:opacity-80"
+            >
+              <img
+                alt="BSDK - Add AI chat to any website with an embeddable SDK | Product Hunt"
+                width="250"
+                height="54"
+                className="h-[32px] w-auto sm:h-[40px] md:h-[52px]"
+                src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1246351&amp;theme=light&amp;t=1789224070402"
+              />
+            </a>
+            <a
+              href="https://peerlist.io/siddreddy/project/bsdk"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex shrink-0 items-center transition-opacity duration-300 hover:opacity-80"
+            >
+              <img
+                src="https://peerlist.io/api/v1/projects/embed/PRJHKKD6JMAAK7MGPIQK8NGRN9DLEG?showUpvote=true&theme=dark"
+                alt="BSDK on Peerlist"
+                width="250"
+                height="72"
+                className="h-[32px] w-auto sm:h-[40px] md:h-[52px]"
+                loading="lazy"
+              />
+            </a>
+          </div>
 
 
         </div>
