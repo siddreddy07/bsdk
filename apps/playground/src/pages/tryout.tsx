@@ -164,6 +164,26 @@ const Tryout = () => {
             Paste a website address, hit Fetch, and get back clean markdown of
             the page content.
           </p>
+          <ol className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1.5 text-xs text-white/50 sm:text-sm">
+            <li>
+              <span className="font-semibold text-[#B8D96A]">1.</span> Fetch the
+              page
+            </li>
+            <li aria-hidden="true" className="text-white/25">→</li>
+            <li>
+              <span className="font-semibold text-[#B8D96A]">2.</span> Hit{" "}
+              <span className="inline-flex items-center gap-1 rounded-md border border-[#B8D96A]/30 bg-[#B8D96A]/10 px-1.5 py-0.5 font-medium text-[#B8D96A]">
+                <Upload className="size-3" />
+                Upload
+              </span>{" "}
+              to save the markdown
+            </li>
+            <li aria-hidden="true" className="text-white/25">→</li>
+            <li>
+              <span className="font-semibold text-[#B8D96A]">3.</span> Ask the
+              BSDK assistant at the bottom-right about it
+            </li>
+          </ol>
         </div>
 
         <form
