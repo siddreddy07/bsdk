@@ -20,7 +20,7 @@ export async function tryWebsite(req: Request, res: Response) {
       markdown: page.markdown,
     });
   } catch (error) {
-    console.error("Try website error:", error);
+    console.error("Try website error:", error instanceof Error ? error.message : error);
 
     // Return 422 for fetch failures (website blocked access)
     if (error instanceof Error) {

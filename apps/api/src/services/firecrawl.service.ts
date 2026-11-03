@@ -18,10 +18,8 @@ export async function fetchRenderedPage(url: string): Promise<FirecrawlResult> {
     },
     body: JSON.stringify({
       url,
-      scrapeOptions: {
-        onlyMainContent: true,
-        formats: ["markdown"],
-      },
+      onlyMainContent: true,
+      formats: ["markdown"],
     }),
   });
 
