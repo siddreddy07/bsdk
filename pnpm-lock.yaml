@@ -24,8 +24,8 @@ importers:
         specifier: ^4.0.37
         version: 4.0.37(zod@4.5.4)
       '@bsdk/server':
-        specifier: ^0.0.7
-        version: 0.0.7
+        specifier: ^0.0.8
+        version: 0.0.8
       '@langchain/textsplitters':
         specifier: ^1.0.1
         version: 1.0.1(@langchain/core@1.2.9(@opentelemetry/api@1.9.1)(@opentelemetry/sdk-trace-base@2.7.1(@opentelemetry/api@1.9.1))(ws@8.17.1))
@@ -587,8 +587,8 @@ packages:
     resolution: {integrity: sha512-ctxtJ/eA+t+6q2++vj5j7FYX3nRu311q1wfYH3xjlLOsczhlhxAg2FWNUXhpGvAw3BWo1xBcvOV6/YLc2r5FJw==}
     hasBin: true
 
-  '@bsdk/server@0.0.7':
-    resolution: {integrity: sha512-8HRrj7FhHTy95b8cd/q4UhNsPPJeR1y3RzPBeFwztpRWqM0STkB4vYzcK6e0GUjdlGgbv8bdZxM0T2ZpW8SO6Q==}
+  '@bsdk/server@0.0.8':
+    resolution: {integrity: sha512-yV0coAPHfvIOznZyV7JTR9ihQaDDffr4eR/cfmYRjvkG7CaqQXHSszmKZxw/PACHYzao32RTIQtT4yx4K+o5yw==}
 
   '@bsdk/ui@0.0.8':
     resolution: {integrity: sha512-9W6jw36cvFHLbddCkKdhyFgfqbIwgTVIjg/dA1KHO2gTQZmRPxdyPQKgatm1cdgJNCNtYlcXtfaSmDHwMTnj2Q==}
@@ -5191,7 +5191,7 @@ snapshots:
     dependencies:
       css-tree: 3.2.1
 
-  '@bsdk/server@0.0.7':
+  '@bsdk/server@0.0.8':
     dependencies:
       '@ai-sdk/groq': 4.0.37(zod@4.5.4)
       '@pinecone-database/pinecone': 8.2.0
