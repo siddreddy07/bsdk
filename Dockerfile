@@ -17,4 +17,6 @@ RUN pnpm --filter api build
 
 EXPOSE 8080
 
-CMD ["pnpm","--filter","api","start"]
+WORKDIR /app/apps/api
+
+CMD ["node","dist/server.js"]

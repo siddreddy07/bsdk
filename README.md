@@ -182,7 +182,8 @@ PORT                # default 8080
 CLIENT_URL          # CORS origin, e.g. the playground URL
 MONGODB_URI
 MONGODB_DB
-JWT_SECRET
+JWT_ACCESS_SECRET
+JWT_REFRESH_SECRET
 GROQ_API_KEY        # or your chosen provider's key
 PINECONE_API_KEY
 PINECONE_INDEX
