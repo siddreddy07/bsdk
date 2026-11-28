@@ -27,9 +27,6 @@ export function createSearchKnowledgeTool (
 
       try {
         
-        console.log("Knowledge query:", query);
-        console.log("Namespace:", namespace);
-    
           const matches = await searchKnowledge({
             query ,
             namespace: namespace,
@@ -39,11 +36,8 @@ export function createSearchKnowledgeTool (
             topK: 5,
           });
     
-          console.log("Knowledge result:", matches);
-    
           return matches
-      } catch (error) {
-            console.error("searchKnowledge failed:", error);
+      } catch {
                 return {
       success: false,
       error: "Knowledge search is temporarily unavailable.",

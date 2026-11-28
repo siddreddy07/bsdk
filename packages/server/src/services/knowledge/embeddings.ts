@@ -28,7 +28,5 @@ export async function embedQuery(
     throw new Error("Failed to generate query embedding");
   }
 
-  console.log('Embeddings :',embedding)
-
   return embedding;
 }
